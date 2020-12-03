@@ -1,0 +1,151 @@
+body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-weight: 300;
+    line-height: 1.6em;
+    color: #656565;
+    font-size: 1.4em;
+    background: #272727;
+}
+
+a:active {
+    outline: 0;
+}
+
+.clear {
+    clear: both;
+}
+
+h1, h2 {
+    font-weight: 600;
+    line-height: 1.1em;
+    color: #fff;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+h3, h4, h5, h6 {
+    line-height: 1.1em;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+input, button, select, textarea {
+    border-radius: 0px !important;
+}
+
+.home-about {
+    padding: 60px 0 0px;
+}
+
+    .home-about hr {
+        padding: 0;
+        margin: 0;
+    }
+
+
+
+footer {
+    background: #000000;
+}
+
+    footer ul.link-list li a {
+        color: #8C8C8C;
+    }
+
+        footer ul.link-list li a:hover {
+            color: #ec4141;
+        }
+
+footer .widgetheading {
+    position: relative;
+}
+
+footer .widget .social-network {
+    position: relative;
+}
+
+
+footer .widget .flickr_badge {
+    width: 100%;
+}
+
+    footer .widget .flickr_badge img {
+        margin: 0 9px 20px 0;
+    }
+
+
+
+footer {
+    padding: 50px 0 0 0;
+    color: #f8f8f8;
+}
+
+    footer a {
+        color: #fff;
+    }
+
+        footer a:hover {
+            color: #ec4141;
+        }
+
+    footer h1, footer h2, footer h3, footer h4, footer h5, footer h6 {
+        color: #d3d3d3;
+    }
+
+    footer address {
+        line-height: 1.6em;
+        color: #797979;
+    }
+
+    footer h5 a:hover, footer a:hover {
+        text-decoration: none;
+    }
+@media (min-width: 768px) and (max-width: 979px) {
+
+    a.detail {
+        background: none;
+        width: 100%;
+    }
+
+
+
+    footer .widget form input#appendedInputButton {
+        display: block;
+        width: 91%;
+        -webkit-border-radius: 4px 4px 4px 4px;
+        -moz-border-radius: 4px 4px 4px 4px;
+        border-radius: 4px 4px 4px 4px;
+    }
+
+    footer .widget form .input-append .btn {
+        display: block;
+        width: 100%;
+        padding-right: 0;
+        padding-left: 0;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        margin-top: 10px;
+    }
+
+    ul.related-folio li {
+        width: 156px;
+        margin: 0 20px 0 0;
+    }
+}
+
+    footer .col-lg-1, footer .col-lg-2, footer .col-lg-3, footer .col-lg-4, footer .col-lg-5, footer .col-lg-6,
+    footer .col-lg-7, footer .col-lg-8, footer .col-lg-9, footer .col-lg-10, footer .col-lg-11, footer .col-lg-12 {
+        margin-bottom: 20px;
+    }
+
+    #sub-footer ul.social-network {
+        float: left;
+    }
+
+
+
+    [class*="span"] {
+        margin-bottom: 20px;
+    }
+
