@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { IUser } from '../shared/interfaces/user';
 
@@ -15,10 +17,12 @@ export class UserService {
   get isLogged(): boolean { return !!this.currentUser; }
 
   constructor(
-    private UserService: UserService
+    private http: HttpClient
   ) { }
 
   login(data: IUser): Observable<IUser>{
-
+    return this.http.post(`${apiUrl}/users/login`, data, {withCredentials:true}).pipe(
+      tap((user: IUser) => this.currentUser = user)
+    );
   }
 }

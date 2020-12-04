@@ -32,4 +32,4 @@ const routes: Routes = [
   }
 ];
 
-export class AppRoutingModule { }
+export const AppRoutingModule = RouterModule.forRoot(routes);

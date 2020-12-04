@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
+import { RouterModule } from '@angular/router';
+import { storageServiceProvider } from './storage.service';
 
 
 
@@ -10,10 +12,16 @@ import { HeaderComponent } from './header/header.component';
     FooterComponent, HeaderComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
+  ],
+  providers: [
+    storageServiceProvider,
+    //authGuard
   ],
   exports: [
-    FooterComponent, HeaderComponent
+    FooterComponent,
+     HeaderComponent
   ]
 })
 export class CoreModule { }

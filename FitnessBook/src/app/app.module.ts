@@ -6,6 +6,11 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { HeaderComponent } from './core/header/header.component';
+import { FooterComponent } from './core/footer/footer.component';
+import { UserModule } from './user/user.module';
+import { PostModule } from './post/post.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,11 +19,17 @@ import { NotFoundComponent } from './not-found/not-found.component';
     NotFoundComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
     CoreModule,
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    PostModule,
+    UserModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    HeaderComponent,
+    AppComponent,
+    FooterComponent]
 })
 export class AppModule { }
