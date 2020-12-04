@@ -43,7 +43,7 @@ Signs up user and returns the registered data as json.
 
 ### URL --> ```/users/register```
 
-### Method --> ```POST```
+### Method --> ```comment```
 
 ### Body -->
 
@@ -76,8 +76,8 @@ Code: 200
 Content: 
 ``` 
 {
-    "themes": [],
     "posts": [],
+    "comments": [],
     "_id": "5f1875690916010017964978",
     "name": "John Doe",
     "email": "john@email.com",
@@ -103,7 +103,7 @@ Signs in user and returns the registered data as json.
 
 ### URL --> ```/users/login```
 
-### Method --> ```POST```
+### Method --> ```comment```
 
 ### Body -->
 
@@ -127,8 +127,8 @@ Code: 200
 Content: 
 ``` 
 {
-    "themes": ["5f85c51996b5601b2406e5b7"],
-    "posts": ["5f86bdcde012743fe4f5b324"],
+    "posts": ["5f85c51996b5601b2406e5b7"],
+    "comments": ["5f86bdcde012743fe4f5b324"],
     "_id": "5f1875690916010017964978",
     "name": "John Doe",
     "email": "john@email.com",
@@ -154,7 +154,7 @@ Logout user.
 
 ### URL --> ```/users/logout```
 
-### Method --> ```POST```
+### Method --> ```comment```
 
 ### Success Response:
 
@@ -167,15 +167,15 @@ Content:
 }
 ```
 
-# Endpoints: Themes
+# Endpoints: posts
 
-* ```/themes```
-* ```/themes/:themeId```
+* ```/posts```
+* ```/posts/:postId```
 
-## Get Themes
-Returns all themes as json.
+## Get posts
+Returns all posts as json.
 
-### URL --> ```/themes```
+### URL --> ```/posts```
 
 ### Method --> ```GET```
 
@@ -188,9 +188,9 @@ Content:
 [
     {
         "subscribers": ["5f8580d25d1da62568dd38fd"],
-        "posts": ["5f858dd2d895ad23602db9d5"],
+        "comments": ["5f858dd2d895ad23602db9d5"],
         "_id": "5f858dd2d895ad23602db9d4",
-        "themeName": "Some Theme",
+        "postName": "Some post",
         "userId": "5f8580d25d1da62568dd38fd",
         "created_at": "2020-10-13T11:21:54.863Z",
         "updatedAt": "2020-10-13T11:21:54.898Z",
@@ -210,26 +210,26 @@ Content:
 }
 ```
 
-## Post Theme
-Creates new Theme with the first post of the author and returns the theme as json.
+## comment post
+Creates new post with the first comment of the author and returns the post as json.
 
-### URL --> ```/themes```
+### URL --> ```/posts```
 
-### Method --> ```POST```
+### Method --> ```comment```
 
 ### Body -->
 
 ```
 {
-    "themeName": "Some Theme Title",
-    "postText": "Some Post text"
+    "postName": "Some post Title",
+    "commentText": "Some comment text"
 }
 ```
 
 Required:
 
-```themeName``` : [string] -- The Title of your new Theme, which you want to create
-```postText``` : [string] -- The text of your post. This post will be append as first comment on your Theme.
+```postName``` : [string] -- The Title of your new post, which you want to create
+```commentText``` : [string] -- The text of your comment. This comment will be append as first comment on your post.
 
 ### Success Response:
 
@@ -239,9 +239,9 @@ Content:
 ``` 
 {
     "subscribers": ["5f86c1f0a112c130e89964af"],
-    "posts": ["5f86c38abfa44331a0ff0094"],
+    "comments": ["5f86c38abfa44331a0ff0094"],
     "_id": "5f86c38abfa44331a0ff0093",
-    "themeName": "Some Theme Title",
+    "postName": "Some post Title",
     "userId": "5f86c1f0a112c130e89964af",
     "created_at": "2020-10-14T09:23:22.102Z",
     "updatedAt": "2020-10-14T09:23:22.114Z",
@@ -260,18 +260,18 @@ Content:
 }
 ```
 
-## Create Post
-Creates new Post of the author and returns the theme as json.
+## Create comment
+Creates new comment of the author and returns the post as json.
 
-### URL --> ```/themes/:themeId```
+### URL --> ```/posts/:postId```
 
-### Method --> ```POST```
+### Method --> ```comment```
 
 ### Body -->
 
 ```
 {
-    "postText": "Some Post text"
+    "commentText": "Some comment text"
 }
 ```
 
@@ -283,12 +283,12 @@ Content:
 ``` 
 {
 "subscribers": ["5f8580d25d1da62568dd38fd"],
-"posts": [
+"comments": [
     "5f85ad8f1141b13a04a9139c",
     "5f85b2501141b13a04a9139d"
 ],
 "_id": "5f858dd2d895ad23602db9d4",
-"themeName": "Some Theme",
+"postName": "Some post",
 "userId": "5f8580d25d1da62568dd38fd",
 "created_at": "2020-10-13T11:21:54.863Z",
 "updatedAt": "2020-10-13T13:57:36.466Z",
@@ -307,14 +307,14 @@ Content:
 }
 ```
 
-# Endpoints: Posts
+# Endpoints: comments
 
-* ```/themes/:themeId/posts/:postId```
+* ```/posts/:postId/comments/:commentId```
 
-## Edit Post
-Edit Post if the user is the author of the post and returns the changed post.
+## Edit comment
+Edit comment if the user is the author of the comment and returns the changed comment.
 
-### URL --> ```/themes/:themeId/posts/:postId```
+### URL --> ```/posts/:postId/comments/:commentId```
 
 ### Method --> ```PUT```
 
@@ -322,7 +322,7 @@ Edit Post if the user is the author of the post and returns the changed post.
 
 ```
 {
-    "postText": "Changed text"
+    "commentText": "Changed text"
 }
 ```
 
@@ -337,7 +337,7 @@ Content:
     "_id": "5f86c3fcbfa44331a0ff0095",
     "text": "Changed text",
     "userId": "5f86c1f0a112c130e89964af",
-    "themeId": "5f85c51996b5601b2406e5b7",
+    "postId": "5f85c51996b5601b2406e5b7",
     "created_at": "2020-10-14T09:25:16.203Z",
     "updatedAt": "2020-10-14T09:31:45.021Z",
     "__v": 0
@@ -364,10 +364,10 @@ Content:
 }
 ```
 
-## Delete Post
-Deletes Post if the user is the author of the post and returns the deleted post.
+## Delete comment
+Deletes comment if the user is the author of the comment and returns the deleted comment.
 
-### URL --> ```/themes/:themeId/posts/:postId```
+### URL --> ```/posts/:postId/comments/:commentId```
 
 ### Method --> ```DELETE```
 
@@ -382,7 +382,7 @@ Content:
     "_id": "5f86c3fcbfa44331a0ff0095",
     "text": "Changed text",
     "userId": "5f86c1f0a112c130e89964af",
-    "themeId": "5f85c51996b5601b2406e5b7",
+    "postId": "5f85c51996b5601b2406e5b7",
     "created_at": "2020-10-14T09:25:16.203Z",
     "updatedAt": "2020-10-14T09:33:56.595Z",
     "__v": 0
@@ -408,10 +408,10 @@ Content:
     message: "Something went wrong!"
 }
 ```
-## Like Post
-Adds like to the post.
+## Like comment
+Adds like to the comment.
 
-### URL --> ```/likes/:postId```
+### URL --> ```/likes/:commentId```
 
 ### Method --> ```PUT```
 
@@ -441,25 +441,25 @@ Content:
 
 
 <!-- users
-.post /register - register new user
-.post /login - login user
-.post /logout - logout user
+.comment /register - register new user
+.comment /login - login user
+.comment /logout - logout user
 
 .get /profile - get user info
-.post /profile - post user info
+.comment /profile - comment user info
 .put /profile - edit user info
 
-themes
-.get /themes - lists all themes
-.post /themes - create new theme only for registered users
+posts
+.get /posts - lists all posts
+.comment /posts - create new post only for registered users
 
-posts:
-.get themes/id - get all posts for theme
-.post themes/id - create post in theme by id only for registered users
-.put themes/id/posts/id - edit post only possible for author
-.delete themes/id/posts/id - delete post only possible for author -->
+comments:
+.get posts/id - get all comments for post
+.comment posts/id - create comment in post by id only for registered users
+.put posts/id/comments/id - edit comment only possible for author
+.delete posts/id/comments/id - delete comment only possible for author -->
 
 
 <!-- http://localhost:3000/api/users/register --  {"name":"SomeName","email":"some@email.com","username":"someUsername","password":"12345","rePassword":"12345"} -->
-<!--http://localhost:3000/api/themes -- {"themeName":"Some Theme", "userId":"5f85bf709a517d36f4abe656", "post": "Some Post" } -->
-<!-- http://localhost:3000/api/themes/5f858dd2d895ad23602db9d4  -- {"userId":"5f8580d25d1da62568dd38fd", "postText": "Some Post textsdfasdf" } -->
+<!--http://localhost:3000/api/posts -- {"postName":"Some post", "userId":"5f85bf709a517d36f4abe656", "comment": "Some comment" } -->
+<!-- http://localhost:3000/api/posts/5f858dd2d895ad23602db9d4  -- {"userId":"5f8580d25d1da62568dd38fd", "commentText": "Some comment textsdfasdf" } -->

@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
         unique: true,
         minlength: [5, 'Username should be at least 5 characters'],
         validate: {
-            validator: function (v) {
+            validator: function(v) {
                 return /[a-zA-Z0-9]+/g.test(v);
             },
             message: props => `${props.value} must contains only latin letters and digits!`
@@ -30,29 +30,29 @@ const userSchema = new mongoose.Schema({
         required: true,
         minlength: [5, 'Password should be at least 5 characters'],
         validate: {
-            validator: function (v) {
+            validator: function(v) {
                 return /[a-zA-Z0-9]+/g.test(v);
             },
             message: props => `${props.value} must contains only latin letters and digits!`
         },
     },
-    themes: [{
-        type: ObjectId,
-        ref: "Theme"
-    }],
     posts: [{
         type: ObjectId,
-        ref: "Post"
+        ref: "post"
+    }],
+    comments: [{
+        type: ObjectId,
+        ref: "comment"
     }]
 }, { timestamps: { createdAt: 'created_at' } });
 
 userSchema.methods = {
-    matchPassword: function (password) {
+    matchPassword: function(password) {
         return bcrypt.compare(password, this.password);
     }
 }
 
-userSchema.pre('save', function (next) {
+userSchema.pre('save', function(next) {
     if (this.isModified('password')) {
         bcrypt.genSalt(saltRounds, (err, salt) => {
             if (err) {

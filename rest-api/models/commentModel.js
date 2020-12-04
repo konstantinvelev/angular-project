@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Schema.Types;
 
-const themeSchema = new mongoose.Schema({
-    themeName: {
+const commentSchema = new mongoose.Schema({
+    text: {
         type: String,
         required: true
     },
-    subscribers: [{
+    likes: [{
         type: ObjectId,
         ref: "User"
     }],
@@ -14,10 +14,10 @@ const themeSchema = new mongoose.Schema({
         type: ObjectId,
         ref: "User"
     },
-    posts: [{
+    postId: {
         type: ObjectId,
-        ref: "Post"
-    }],
+        ref: "post"
+    },
 }, { timestamps: { createdAt: 'created_at' } });
 
-module.exports = mongoose.model('Theme', themeSchema);
+module.exports = mongoose.model('comment', commentSchema);

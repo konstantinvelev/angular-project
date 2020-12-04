@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Schema.Types;
 
 const postSchema = new mongoose.Schema({
-    text: {
+    postName: {
         type: String,
         required: true
     },
-    likes: [{
+    subscribers: [{
         type: ObjectId,
         ref: "User"
     }],
@@ -14,10 +14,10 @@ const postSchema = new mongoose.Schema({
         type: ObjectId,
         ref: "User"
     },
-    themeId: {
+    comments: [{
         type: ObjectId,
-        ref: "Theme"
-    },
+        ref: "comment"
+    }],
 }, { timestamps: { createdAt: 'created_at' } });
 
-module.exports = mongoose.model('Post', postSchema);
+module.exports = mongoose.model('post', postSchema);

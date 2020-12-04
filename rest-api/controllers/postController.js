@@ -1,91 +1,52 @@
-const { userModel, themeModel, postModel } = require('../models');
+const { postModel } = require('../models');
+const { newcomment } = require('./commentController')
 
-function newPost(text, userId, themeId) {
-    return postModel.create({ text, userId, themeId })
-        .then(post => {
-            return Promise.all([
-                userModel.updateOne({ _id: userId }, { $push: { posts: post._id }, $addToSet: { themes: themeId } }),
-                themeModel.findByIdAndUpdate({ _id: themeId }, { $push: { posts: post._id }, $addToSet: { subscribers: userId } }, { new: true })
-            ])
-        })
-}
-
-function getLatestsPosts(req, res, next) {
-    const limit = Number(req.query.limit) || 0;
-
+function getposts(req, res, next) {
     postModel.find()
-        .sort({ created_at: -1 })
-        .limit(limit)
-        .populate('themeId userId')
-        .then(posts => {
-            res.status(200).json(posts)
-        })
+        .populate('userId')
+        .then(posts => res.json(posts))
         .catch(next);
 }
 
-function createPost(req, res, next) {
-    const { themeId } = req.params;
-    const { _id: userId } = req.user;
-    const { postText } = req.body;
-
-    newPost(postText, userId, themeId)
-        .then(([_, updatedTheme]) => res.status(200).json(updatedTheme))
-        .catch(next);
-}
-
-function editPost(req, res, next) {
+function getpost(req, res, next) {
     const { postId } = req.params;
-    const { postText } = req.body;
+
+    postModel.findById(postId)
+        .populate({
+            path: 'comments',
+            populate: {
+                path: 'userId'
+            }
+        })
+        .then(post => res.json(post))
+        .catch(next);
+}
+
+function createpost(req, res, next) {
+    const { postName, commentText } = req.body;
     const { _id: userId } = req.user;
 
-    // if the userId is not the same as this one of the post, the post will not be updated
-    postModel.findOneAndUpdate({ _id: postId, userId }, { text: postText }, { new: true })
-        .then(updatedPost => {
-            if (updatedPost) {
-                res.status(200).json(updatedPost);
-            }
-            else {
-                res.status(401).json({ message: `Not allowed!` });
-            }
+    postModel.create({ postName, userId, subscribers: [userId] })
+        .then(post => {
+            newcomment(commentText, userId, post._id)
+                .then(([_, updatedpost]) => res.status(200).json(updatedpost))
         })
         .catch(next);
 }
 
-function deletePost(req, res, next) {
-    const { postId, themeId } = req.params;
+function subscribe(req, res, next) {
+    const postId = req.params.postId;
     const { _id: userId } = req.user;
-
-    Promise.all([
-        postModel.findOneAndDelete({ _id: postId, userId }),
-        userModel.findOneAndUpdate({ _id: userId }, { $pull: { posts: postId } }),
-        themeModel.findOneAndUpdate({ _id: themeId }, { $pull: { posts: postId } }),
-    ])
-        .then(([deletedOne, _, __]) => {
-            if (deletedOne) {
-                res.status(200).json(deletedOne)
-            } else {
-                res.status(401).json({ message: `Not allowed!` });
-            }
+    postModel.findByIdAndUpdate({ _id: postId }, { $addToSet: { subscribers: userId } }, { new: true })
+        .then(updatedpost => {
+            res.status(200).json(updatedpost)
         })
         .catch(next);
-}
-
-function like(req, res, next) {
-    const { postId } = req.params;
-    const { _id: userId } = req.user;
-
-    console.log('like')
-
-    postModel.updateOne({ _id: postId }, { $addToSet: { likes: userId } }, { new: true })
-        .then(() => res.status(200).json({ message: 'Liked successful!' }))
-        .catch(next)
 }
 
 module.exports = {
-    getLatestsPosts,
-    newPost,
-    createPost,
-    editPost,
-    deletePost,
-    like,
+    getposts,
+    createpost,
+    getpost,
+    subscribe,
 }
