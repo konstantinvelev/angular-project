@@ -9,7 +9,7 @@
 
         <p class="field field-icon">
             <label for="email">Email</label>
-            <input #userEmail="ngModel" class="input-error" type="email" name="email" id="email" ngModel required appEmailValidator minlength="4" pattern="^[a-zA-Z0-9\.-]{6,}@\w+\.(com|bg)$">
+            <input #userEmail="ngModel" class="input-error" type="email" name="email" id="email" ngModel required appEmailValidator minlength="4" pattern="^[a-zA-Z0-9\.-]{4,}@\w+\.(com|bg)$">
         </p>
         <p *ngIf="userEmail.touched && userEmail.errors?.required" class="error">
             Email is required!
@@ -18,7 +18,7 @@
             Email is not valid!
         </p>
         <p *ngIf="userEmail.touched && userEmail.errors?.minlength" class="error ">
-            Password must be at least 3 characters!
+            Email must be at least 4 characters!
         </p>
 
         <p class="field field-icon">
