@@ -1,1 +1,43 @@
-<p>login works!</p>
+<div *ngIf="isLoading">
+    <app-loader [isLoading]="isLoading"></app-loader>
+</div>
+
+<form #f class="login" (ngSubmit)="submitFormHandler(f.value)" *ngIf="!isLoading">
+
+    <fieldset>
+        <h1>Login Form</h1>
+
+        <p class="field field-icon">
+            <label for="email">Email</label>
+            <input #userEmail="ngModel" class="input-error" type="email" name="email" id="email" ngModel required appEmailValidator minlength="4" pattern="^[a-zA-Z0-9\.-]{6,}@\w+\.(com|bg)$">
+        </p>
+        <p *ngIf="userEmail.touched && userEmail.errors?.required" class="error">
+            Email is required!
+        </p>
+        <p *ngIf="userEmail.touched && userEmail.errors?.pattern" class="error ">
+            Email is not valid!
+        </p>
+        <p *ngIf="userEmail.touched && userEmail.errors?.minlength" class="error ">
+            Password must be at least 3 characters!
+        </p>
+
+        <p class="field field-icon">
+            <label for="password ">Password</label>
+            <input #userPassword="ngModel" type="password " name="password " id="password" ngModel required minlength="3">
+        </p>
+        <p *ngIf="userPassword.touched && userPassword.errors?.required" class="error ">
+            Password is required!
+        </p>
+        <p *ngIf="userPassword.touched && userPassword.errors?.minlength" class="error ">
+            Password must be at least 3 characters!
+        </p>
+
+        <button [disabled]="isLoading || f.invalid">Login</button>
+
+        <p class="text-center ">
+            Have an account?
+            <a href="/user/register">Register</a>
+        </p>
+
+    </fieldset>
+</form>
