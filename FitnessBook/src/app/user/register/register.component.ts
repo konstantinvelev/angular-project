@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-register',
@@ -7,12 +9,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  isLoading = false;
+  errorMessege = ''
+  constructor(
+    private userService: UserService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
-  submitFormHandler(){
-    
+
+  submitFormHandler(fromValue: { username: string, email: string, userInfo: string, password: string, rePassword: string }) {
+    this.isLoading = true;
+    this.errorMessege = '';
+    this.userService.register(fromValue).subscribe({
+      next: () => {
+        this.isLoading = false;
+        this.router.navigate(['/']);
+      },
+      error: (err) => {
+        this.isLoading = false;
+        this.errorMessege = err.message;
+        console.error(err);
+      }
+    })
+
   }
 
 }
