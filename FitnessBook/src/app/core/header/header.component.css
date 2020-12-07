@@ -22,6 +22,7 @@ a:hover {
     padding: 8px 16px;
     margin-left: 10px;
     text-transform: capitalize;
+    text-decoration: none;
 }
 
 #titleOfApp {

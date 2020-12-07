@@ -10,7 +10,11 @@ import { UserService } from 'src/app/user/user.service';
 export class HeaderComponent implements OnDestroy {
 
   get isLogged(): boolean{
-   return this.userService.isLogged
+   return this.userService.isLogged;
+  }
+
+  get userUsername(): string{
+    return this.userService.currentUser.username;
   }
 
   constructor(

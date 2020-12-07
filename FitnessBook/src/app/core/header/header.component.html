@@ -6,10 +6,11 @@
 
             <a routerLink="/posts/create" *ngIf="isLogged" class="navitem">Post Something</a>
             <a routerLink="/posts" *ngIf="isLogged" class="navitem">Posts</a>
-            <a routerLink="/user/profile" *ngIf="isLogged" class="navitem">Hello, currentUser.username</a>
+            <a routerLink="/user/profile" *ngIf="isLogged" class="navitem">Hello, {{userUsername}}</a>
 
             <a (click)="logoutHandler()" *ngIf="isLogged" class="navitem">Logout</a>
 
+            <a routerLink="/about" *ngIf="!isLogged" class="navitem">About</a>
             <a routerLink="user/login" *ngIf="!isLogged" class="navitem">Login</a>
             <a routerLink="user/register" *ngIf="!isLogged" class="navitem">Register</a>
         </div>

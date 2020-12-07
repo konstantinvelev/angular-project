@@ -11,12 +11,14 @@ import { FooterComponent } from './core/footer/footer.component';
 import { UserModule } from './user/user.module';
 import { PostModule } from './post/post.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    AboutComponent
   ],
   imports: [
     CoreModule,

@@ -1,7 +1,21 @@
 /*login register forms  */
 
+#haveanaccount:hover {
+    text-decoration: underline;
+    text-decoration-color: rgb(255, 30, 0);
+    background-color: black;
+}
+
+#haveanaccount {
+    color: rgb(255, 30, 0);
+    text-decoration: none;
+    font-weight: 900;
+}
+
 form.login,
 form.register {
+    padding-top: 20px;
+    padding-bottom: 20px;
     width: 40%;
     margin: 2em auto 0;
     text-align: center;
