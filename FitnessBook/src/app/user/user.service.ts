@@ -20,13 +20,13 @@ export class UserService {
     private http: HttpClient
   ) { }
 
-  login(data): Observable<IUser> {
+  login(data: any): Observable<IUser> {
     return this.http.post(`${apiUrl}/users/login`, data, { withCredentials: true }).pipe(
       tap((user: IUser) => this.currentUser = user)
     );
   }
 
-  register(data): Observable<IUser> {
+  register(data: any): Observable<IUser> {
     return this.http.post(`${apiUrl}/users/register`, data, { withCredentials: true }).pipe(
       tap((user: IUser) => this.currentUser = user)
     )

@@ -2,7 +2,7 @@
     <app-loader [isLoading]="isLoading"></app-loader>
 </div>
 
-<form #f class="login" (ngSubmit)="submitFormHandler(f.value)" *ngIf="!isLoading">
+<form #f="ngForm" class="login" (ngSubmit)="submitFormHandler(f.value)" *ngIf="!isLoading">
 
     <fieldset>
         <h1>Login Form</h1>
