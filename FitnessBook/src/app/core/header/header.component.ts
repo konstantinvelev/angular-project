@@ -22,6 +22,6 @@ export class HeaderComponent implements OnDestroy {
   }
 
   logoutHandler(): void {
-    //this.userService.logout().subscribe(() => this.router.navigate(['/user/login']));
+    this.userService.logout().subscribe(() => this.router.navigate(['/user/login']));
   }
 }
