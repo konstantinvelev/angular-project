@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IUser } from 'src/app/shared/interfaces/user';
 import { UserService } from '../user.service';
 
 @Component({
@@ -11,7 +10,7 @@ import { UserService } from '../user.service';
 export class LoginComponent implements OnInit {
 
   isLoading = false;
-  errorMessage = '';
+  errorMessege = '';
 
   constructor(
     private userService: UserService,
@@ -21,19 +20,18 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  submitFormHandler(formValue: {email: string, password: string}): void{
+  submitFormHandler(formValue: { email: string, password: string }){
     this.isLoading = true;
-    this.errorMessage = '';
+    this.errorMessege = '';
     this.userService.login(formValue).subscribe({
-      next: (data) =>{
+      next: () => {
         this.isLoading = false;
-        this.router.navigate(['/', data]);
-        console.log(formValue);
-        console.log(data);
+        this.router.navigate(['/home']);
       },
-      error: (err) =>{
+      error: (err) => {
         this.isLoading = false;
-        this.errorMessage = err.message;
+        this.errorMessege = err.message;
+        console.error(err);
       }
     })
   }
