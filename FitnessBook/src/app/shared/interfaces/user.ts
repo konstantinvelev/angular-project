@@ -6,6 +6,6 @@ export interface IUser extends IBase{
     userInfo:string
     email: string;
     password: string; 
-    posts: [IPost];
-    friends: [IUser];
+    posts: IPost[];
+    friends: IUser[];
 }

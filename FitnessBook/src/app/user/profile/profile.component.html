@@ -1,17 +1,24 @@
-<div class="profile">
-    <img src="./profile.png" alt="default user">
+<div id="profilecheif" class="profile">
     <h3>User Info:</h3>
     <div class="flex">
         <p>Username: </p>
-        <p>Johny</p>
+        <p>{{currentUser.username}}</p>
     </div>
     <div class="flex">
         <p>Email: </p>
-        <p>john.doe@gmail.com</p>
+        <p>{{currentUser.email}}</p>
     </div>
-    <div class="flex">
-        <p>Phone: </p>
-        <p>+359 885 888 888</p>
+    <div *ngIf="aboutYou" class="flex">
+        <p>About you</p>
+        <p>{{currentUser.userInfo}}</p>
+    </div>
+    <h3>Posts</h3>
+    <div *ngFor="let post of postsForCurrentUser" class="flex">
+        <p>{{post.title}}</p>
+    </div>
+    <h3>Friends</h3>
+    <div *ngFor="let friend of currentUser.friends" class="flex">
+        <p>{{friend.username}}</p>
     </div>
     <button class="edit-button">Edit</button>
 </div>

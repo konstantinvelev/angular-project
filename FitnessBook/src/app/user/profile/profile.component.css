@@ -1,15 +1,16 @@
 .profile {
+    padding-top: 20px;
+    padding-bottom: 20px;
     width: 100%;
-    max-width: 500px;
+    max-width: 1200px;
     margin: 2em auto 1rem;
     padding: .5em;
-    border: .3em solid rgb(0, 212, 255);
+    border: .3em solid rgb(255, 30, 0);
     border-radius: .5rem;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #444;
-    background-color: hsla(0, 0%, 94.1%, .8);
-    box-shadow: 0 0 1em 0 #000;
+    color: white;
     text-align: center;
+    background-color: rgba(27, 26, 26, 0.747);
 }
 
 .profile h3 {
@@ -42,6 +43,8 @@
 
 .profile button {
     color: white;
+    font-weight: 900;
+    background-color: black;
     border: none;
     border-radius: 0.3em;
     padding: 0.6em 1.2em;

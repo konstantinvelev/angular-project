@@ -1,23 +1,23 @@
 const mongoose = require('mongoose');
-const { ObjectId } = mongoose.Schema.Types;
+const Types = mongoose.Schema.Types;
 
 const postSchema = new mongoose.Schema({
-    postName: {
+    title: {
         type: String,
         required: true
     },
-    subscribers: [{
-        type: ObjectId,
-        ref: "User"
-    }],
-    userId: {
-        type: ObjectId,
-        ref: "User"
+    imageUrl: {
+        type: String,
+        required: false
     },
-    comments: [{
-        type: ObjectId,
-        ref: "comment"
-    }],
+    description: {
+        type: String,
+        required: true
+    },
+    creator: { type: Types.ObjectId, ref: 'user' },
+    likes: [{ type: Types.ObjectId, ref: 'user' }],
+    comments: [{ type: Types.ObjectId, ref: 'comments' }]
+
 }, { timestamps: { createdAt: 'created_at' } });
 
 module.exports = mongoose.model('post', postSchema);

@@ -23,14 +23,11 @@ function getpost(req, res, next) {
 }
 
 function createpost(req, res, next) {
-    const { postName, commentText } = req.body;
-    const { _id: userId } = req.user;
+    const { title, imageUrl, description } = req.body;
+    const user = req.user;
 
-    postModel.create({ postName, userId, subscribers: [userId] })
-        .then(post => {
-            newcomment(commentText, userId, post._id)
-                .then(([_, updatedpost]) => res.status(200).json(updatedpost))
-        })
+    postModel.create({ title, imageUrl, description, creator: user._id })
+        .then((post) => res.status(200).json(updatedpost))
         .catch(next);
 }
 
