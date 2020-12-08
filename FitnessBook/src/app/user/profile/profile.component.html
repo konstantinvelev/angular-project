@@ -14,11 +14,11 @@
     </div>
     <h3>Posts</h3>
     <div *ngFor="let post of postsForCurrentUser" class="flex">
-        <p>{{post.title}}</p>
+        <p>{{post}}</p>
     </div>
     <h3>Friends</h3>
     <div *ngFor="let friend of currentUser.friends" class="flex">
-        <p>{{friend.username}}</p>
+        <p>{{currentUser.friends}}</p>
     </div>
-    <button class="edit-button">Edit</button>
+    <button id="edit-button">Edit</button>
 </div>

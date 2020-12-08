@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/user/user.service';
 import { PostService } from '../post.service';
 
 @Component({
@@ -10,26 +11,27 @@ import { PostService } from '../post.service';
 export class CreateComponent implements OnInit {
 
   isLoading = false;
-  errorMessage = '';
+  errorMessege = '';
 
   constructor(
     private postService: PostService,
+    private userService: UserService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
   }
-  submitFormHandler(formValue: { title: string, imageUrl: string, description: string }): void {
+  submitFormHandler(fromValue: { title: string, imageUrl: string, description: string }): void {
     this.isLoading = true;
-    this.errorMessage = '';
-    this.postService.create(formValue).subscribe({
+    this.errorMessege = '';
+    this.postService.create(fromValue).subscribe({
       next: () => {
         this.isLoading = false;
-        this.router.navigate(['/'])
+        this.router.navigate(['/post/all']);
       },
       error: (err) => {
         this.isLoading = false;
-        this.errorMessage = err.message;
+        this.errorMessege = err.message;
         this.router.navigate(['/post/create']);
       }
     });

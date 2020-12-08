@@ -1,4 +1,5 @@
 const { postModel } = require('../models');
+const userModel = require('../models/userModel');
 
 function getposts(req, res, next) {
     postModel.find()
@@ -19,14 +20,19 @@ function getpost(req, res, next) {
         })
         .then(post => res.json(post))
         .catch(next);
+
+
 }
 
 function createpost(req, res, next) {
     const { title, imageUrl, description } = req.body;
     const { _id: userId } = req.user;
-    const user = req.user;
+    // 
     postModel.create({ title, imageUrl, description, userId })
-        .then((post) => res.status(200))
+        .then((post) => {
+            userModel.updateOne({ _id: userId }, { $push: { posts: post._id } })
+                .then((post) => res.status(200).json(post));
+        })
         .catch(next);
 }
 

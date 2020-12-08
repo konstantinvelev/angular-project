@@ -70,6 +70,18 @@
     background-color: red;
 }
 
-.green-button {
-    background-color: green;
+#edit-button:hover {
+    background-color: black;
+}
+
+#edit-button {
+    color: white;
+    padding-left: 20px;
+    padding-right: 10px;
+    background-color: rgb(255, 30, 0);
+    padding: 10px 20px;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-family: arial, helvetica, verdana, sans-serif;
+    font-weight: 900;
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IPost } from 'src/app/shared/interfaces/post';
 import { IUser } from 'src/app/shared/interfaces/user';
 import { UserService } from '../user.service';
@@ -10,6 +10,8 @@ import { UserService } from '../user.service';
 })
 export class ProfileComponent implements OnInit {
 
+  @Input() post : IPost
+
   get currentUser(): IUser {
     return this.userService.currentUser;
   }
@@ -17,7 +19,7 @@ export class ProfileComponent implements OnInit {
     return this.userService.currentUser.userInfo.length > 0 ? true : false;
   }
   get postsForCurrentUser(): any{
-    return this.currentUser.posts.filter(s=> s.creator.id === this.userService.currentUser.id);
+    return this.currentUser.posts.filter(s=> s.userId.id === this.userService.currentUser.id);
   } 
 
   constructor(private userService: UserService) { }

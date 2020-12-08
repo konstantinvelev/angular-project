@@ -1,22 +1,15 @@
-<div *ngIf="allPosts.length === 0">There is no Themes!</div>
+<div *ngIf="allPosts.length === 0">
+
+    There is no Themes!</div>
 
 <div class="row blog-page" *ngFor="let post of allPosts">
     <div>
         <div id="cheifdiv">
             <h2>{{post.title}}</h2>
-            <div>
-                <ul>
-                    <li>
-                        <i class="fas fa-user-edit"></i>
-                        <div class="text-white">{{post.userId.username}}</div>>
-                    </li>
-
-                    <li>
-                        <i class="fas fa-calendar-alt"></i>
-                        <div class="text-white">{{post.created_at}}</div>>
-                    </li>
-                </ul>
-                <div id="registermap">
+            <div id="infoHolder">
+                <div id="username">{{post.userId.username}}</div>
+                <div id="likes">{{post.likes.length}} Likes</div>
+                <div id="detailsButton">
                     <a id="details" routerLink="/user/register" class="navitem">Details</a>
                 </div>
             </div>

@@ -20,7 +20,9 @@ export class PostService {
   ) { }
 
   create(data): Observable<IPost<IUser>> {
-    return this.http.post<IPost<IUser>>(`${apiUrl}/posts/create`, data, { withCredentials: true });
+    return this.http.post<IPost<IUser>>(`${apiUrl}/posts/create`, data, { withCredentials: true }).pipe(
+      tap((post: IPost) => this.newPost = post)
+    );
   }
 
   details(data): Observable<IPost> {
