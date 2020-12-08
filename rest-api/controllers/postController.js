@@ -1,5 +1,4 @@
 const { postModel } = require('../models');
-const { newcomment } = require('./commentController')
 
 function getposts(req, res, next) {
     postModel.find()
@@ -24,10 +23,10 @@ function getpost(req, res, next) {
 
 function createpost(req, res, next) {
     const { title, imageUrl, description } = req.body;
+    const { _id: userId } = req.user;
     const user = req.user;
-
-    postModel.create({ title, imageUrl, description, creator: user._id })
-        .then((post) => res.status(200).json(updatedpost))
+    postModel.create({ title, imageUrl, description, userId })
+        .then((post) => res.status(200))
         .catch(next);
 }
 

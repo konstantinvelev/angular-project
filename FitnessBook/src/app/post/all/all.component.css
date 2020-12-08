@@ -1,0 +1,54 @@
+div {
+    color: white;
+}
+
+a {
+    color: white;
+}
+
+#cheifdiv {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 2em auto 1rem;
+    padding: .5em;
+    border: .3em solid rgb(255, 30, 0);
+    border-radius: .5rem;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: white;
+    text-align: center;
+    background-color: rgba(27, 26, 26, 0.747);
+}
+
+.button-holder {
+    border: rgb(255, 30, 0);
+}
+
+#cheif {
+    display: inline-flex;
+    width: 65%;
+}
+
+
+/* #details {
+    padding-top: 20px;
+    padding-left: 65%;
+    padding-right: 10px;
+} */
+
+#details:hover {
+    background-color: black;
+}
+
+#details {
+    color: white;
+    padding-left: 20px;
+    padding-right: 10px;
+    background-color: rgb(255, 30, 0);
+    padding: 10px 20px;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-family: arial, helvetica, verdana, sans-serif;
+    font-weight: 900;
+}

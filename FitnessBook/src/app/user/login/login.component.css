@@ -110,12 +110,8 @@ label {
 /* errors  */
 
 p.error {
-    text-align: left;
+    text-align: center;
     border-radius: 0.3em;
     color: red;
     padding-top: 0;
-}
-
-.input-error {
-    border-left-color: red;
 }

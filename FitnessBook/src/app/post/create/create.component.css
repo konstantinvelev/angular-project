@@ -12,8 +12,11 @@
     font-weight: 900;
 }
 
-form.login,
-form.register {
+.post label {
+    text-align: center;
+}
+
+form.post {
     padding-top: 20px;
     padding-bottom: 20px;
     width: 40%;
@@ -21,27 +24,23 @@ form.register {
     text-align: center;
 }
 
-.login fieldset,
-.register fieldset {
+.post fieldset {
     border-radius: 0.3em;
     padding: 0.8em;
     background-color: #ffffff;
 }
 
-.login h2,
-.register h2 {
+.post h2 {
     padding-top: 0;
     border-bottom: none;
 }
 
-.login p,
-.register p {
+.post p {
     padding-bottom: 0;
     padding-top: 1.5rem;
 }
 
-.login input,
-.register input {
+.post input {
     flex: 0 1 100%;
     border: 1px solid;
     padding: 0.3em;
@@ -51,8 +50,7 @@ form.register {
     border-bottom-right-radius: 0.3em;
 }
 
-.login textarea,
-.register textarea {
+.post textarea {
     flex: 0 1 100%;
     border: 1px solid;
     padding: 0.3em;
@@ -62,13 +60,11 @@ form.register {
     border-bottom-right-radius: 0.3em;
 }
 
-.login select,
-.register select {
+.post select {
     border-color: black;
 }
 
-.login button,
-.register button {
+.post button {
     color: white;
     border: none;
     border-radius: 0.3em;
@@ -80,8 +76,7 @@ form.register {
     font-weight: 900;
 }
 
-.login i,
-.register i {
+.post i {
     border: 1px solid;
     border-right: none;
     padding: 0.55em;
@@ -90,36 +85,18 @@ form.register {
     background-color: #e9ecef;
 }
 
-.login a,
-.register a {
-    color: #007bff;
-}
-
-.login a:hover,
-.register a:hover {
+.post a:hover {
     cursor: pointer;
 }
 
-.register .tel {
-    padding-right: 0.8em;
-}
-
-.login .field,
-.register .field {
+.post .field {
     display: flex;
     padding-bottom: 0;
 }
 
-
-/* errors  */
-
 p.error {
-    text-align: left;
+    text-align: center;
     border-radius: 0.3em;
     color: red;
     padding-top: 0;
-}
-
-.input-error {
-    border-left-color: red;
 }

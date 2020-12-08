@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Types = mongoose.Schema.Types;
+const { ObjectId } = mongoose.Schema.Types;
 
 const postSchema = new mongoose.Schema({
     title: {
@@ -14,9 +14,18 @@ const postSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    creator: { type: Types.ObjectId, ref: 'user' },
-    likes: [{ type: Types.ObjectId, ref: 'user' }],
-    comments: [{ type: Types.ObjectId, ref: 'comments' }]
+    userId: {
+        type: ObjectId,
+        ref: "User"
+    },
+    likes: [{
+        type: ObjectId,
+        ref: "User"
+    }],
+    comments: [{
+        type: ObjectId,
+        ref: "Comments"
+    }]
 
 }, { timestamps: { createdAt: 'created_at' } });
 

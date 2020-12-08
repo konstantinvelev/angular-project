@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { map } from 'rxjs/operators';
+import { IPost } from 'src/app/shared/interfaces/post';
+import { IUser } from 'src/app/shared/interfaces/user';
+import { UserService } from 'src/app/user/user.service';
+import { PostService } from '../post.service';
 
 @Component({
   selector: 'app-all',
@@ -7,9 +12,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllComponent implements OnInit {
 
-  constructor() { }
+  @Input() post : IPost
+
+  allPosts: IPost[];  
+
+  constructor(
+    private postService: PostService,
+  ) { }
 
   ngOnInit(): void {
+    this.postService.all().subscribe(allposts => {
+      this.allPosts = allposts
+    });
   }
 
 }

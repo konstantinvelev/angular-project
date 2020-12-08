@@ -1,7 +1,7 @@
 import { IBase } from './base';
 import { IPost } from './post';
 
-export interface IUser extends IBase{
+export interface IUser<T = string>  extends IBase{
     username:string;
     userInfo:string
     email: string;

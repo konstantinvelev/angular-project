@@ -1,6 +1,7 @@
 import { RouterModule, Routes } from "@angular/router";
 import { AllComponent } from './all/all.component';
 import { CreateComponent } from './create/create.component';
+import { DetailsComponent } from './details/details.component';
 
 const routes: Routes = [
     {
@@ -21,6 +22,14 @@ const routes: Routes = [
                 data:{
                     isLogged: true,
                     title: 'All Posts Page'
+                }
+            },
+            {
+                path: 'details',
+                component: DetailsComponent,
+                data:{
+                    isLogged: true,
+                    title: 'Details Page'
                 }
             },
         ]

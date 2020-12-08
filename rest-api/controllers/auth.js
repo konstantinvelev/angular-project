@@ -13,9 +13,9 @@ const removePassword = (data) => {
 }
 
 function register(req, res, next) {
-    const { tel, email, username, password, repeatPassword } = req.body;
+    const { email, username, password, repeatPassword } = req.body;
 
-    return userModel.create({ tel, email, username, password })
+    return userModel.create({ email, username, password })
         .then((createdUser) => {
             createdUser = bsonToJson(createdUser);
             createdUser = removePassword(createdUser);
@@ -101,9 +101,18 @@ function editProfileInfo(req, res, next) {
         .catch(next);
 }
 
+// function getById(req, res, next) {
+//     const user = req.user;
+
+//     userModel.findById(user._id)
+//         .then(user => { res.send(user).status(200) })
+//         .catch(next);
+// }
+
 module.exports = {
     login,
     register,
+    // getById,
     logout,
     getProfileInfo,
     editProfileInfo,

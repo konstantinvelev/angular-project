@@ -23,9 +23,9 @@ export class CreateComponent implements OnInit {
     this.isLoading = true;
     this.errorMessage = '';
     this.postService.create(formValue).subscribe({
-      next: (data) => {
+      next: () => {
         this.isLoading = false;
-        this.router.navigate(['/post/details/' + data.id])
+        this.router.navigate(['/'])
       },
       error: (err) => {
         this.isLoading = false;

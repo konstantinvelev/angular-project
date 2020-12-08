@@ -13,6 +13,7 @@ const apiUrl = environment.apiUrl;
 export class UserService {
 
   currentUser: IUser | null;
+  userById: IUser | null;
 
   get isLogged(): boolean { return !!this.currentUser; }
 

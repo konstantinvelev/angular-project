@@ -5,28 +5,33 @@ import { AllComponent } from './all/all.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { PostRoutingModule } from './post-routing.module';
+import { RouterModule } from '@angular/router';
+import { DetailsComponent } from './details/details.component';
 
 
 
 @NgModule({
   declarations: [
-    CreateComponent, 
-    AllComponent
+    CreateComponent,
+    AllComponent,
+    DetailsComponent
   ],
   imports: [
     CommonModule,
+    RouterModule,
     PostRoutingModule,
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
   ],
-  exports: [
-    CreateComponent, 
-    AllComponent
-  ],
-  providers:[
+  providers: [
     PostModule
+  ],
+  exports: [
+    CreateComponent,
+    AllComponent,
+    DetailsComponent
   ]
 })
 export class PostModule { }
