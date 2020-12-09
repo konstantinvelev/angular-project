@@ -4,6 +4,17 @@ h2 {
     color: white;
 }
 
+#diff {
+    padding-top: 120px;
+    padding-bottom: 120px;
+    padding-left: 100px;
+    padding-right: 100px;
+    background-image: url('../../assets/background.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto;
+}
+
 #login:hover {
     background-color: black;
 }

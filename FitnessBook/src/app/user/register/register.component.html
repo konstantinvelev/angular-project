@@ -4,12 +4,12 @@
 
 <form #f="ngForm" class="register" (ngSubmit)="submitFormHandler(f.value)" *ngIf="!isLoading">
     <fieldset>
-        <h1>Registration Form</h1>
+        <h1>Registration</h1>
 
         <!-- username -->
+        <label for="username">Username</label>
         <p class="field">
-            <label for="username">Username</label>
-            <input #userUsername="ngModel" class="input-error" type="text" name="username" id="username" ngModel required minlength="4">
+            <input #userUsername="ngModel" class="input-error" type="text" placeholder="Username" name="username" id="username" ngModel required minlength="4">
         </p>
         <p class="error" *ngIf="userUsername.touched && userUsername.errors?.required">
             Username is required!
@@ -18,9 +18,9 @@
             Username must be at least 4 characters!
         </p>
         <!-- email -->
+        <label for="email">Email</label>
         <p class="field field-icon">
-            <label for="email">Email</label>
-            <input #userEmail="ngModel" class="input-error" type="email" name="email" id="email" ngModel required minlength="4" pattern="^[a-zA-Z0-9\.-]{4,}@\w+\.(com|bg)$">
+            <input #userEmail="ngModel" class="input-error" type="email" placeholder="Email" name="email" id="email" ngModel required minlength="4" pattern="^[a-zA-Z0-9\.-]{4,}@\w+\.(com|bg)$">
         </p>
         <p *ngIf="userEmail.touched && userEmail.errors?.required" class="error">
             Email is required!
@@ -31,17 +31,17 @@
         <p *ngIf="userEmail.touched && userEmail.errors?.minlength" class="error ">
             Email must be at least 4 characters!
         </p>
+        <label for="userInfo">User Info </label>
         <div class="field">
-            <label for="userInfo">User Info </label>
-            <textarea #userInfo="ngModel" type="text" name="userInfo" id="userInfo" ngModel minlength="4"></textarea>
+            <textarea #userInfo="ngModel" type="text" name="userInfo" placeholder="User Info" id="userInfo" ngModel minlength="4"></textarea>
         </div>
         <p *ngIf="userInfo.errors?.minlength" class="error ">
             User info must be at least 4 characters!
         </p>
         <!-- password -->
+        <label for="password">Password</label>
         <p class="field ">
-            <label for="password">Password</label>
-            <input #userPassword="ngModel" type="password" name="password" id="password" ngModel required minlength="4">
+            <input #userPassword="ngModel" type="password" name="password" placeholder="Password" id="password" ngModel required minlength="4">
         </p>
         <p *ngIf="userPassword.touched && userPassword.errors?.required" class="error">
             Password is required!
@@ -51,9 +51,9 @@
         </p>
 
         <!-- rePassword -->
+        <label for="rePassword">Repeat Password</label>
         <p class="field field-icon">
-            <label for="rePassword">Repeat Password</label>
-            <input #rePassword="ngModel" type="password" name="rePassword" id="rePassword" ngModel required minlength="4">
+            <input #rePassword="ngModel" type="password" name="rePassword" placeholder="Repeat Password" id="rePassword" ngModel required minlength="4">
         </p>
         <p *ngIf="rePassword.touched && rePassword.errors?.required" class="error">
             Repeat Password is required!

@@ -25,7 +25,7 @@ const routes: Routes = [
                 }
             },
             {
-                path: 'details',
+                path: 'details/:id',
                 component: DetailsComponent,
                 data:{
                     isLogged: true,

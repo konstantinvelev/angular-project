@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
     return this.userService.currentUser.userInfo.length > 0 ? true : false;
   }
   get postsForCurrentUser(): any{
-    return this.currentUser.posts.filter(s=> s.userId.id === this.userService.currentUser.id);
+    return this.currentUser.posts.filter(s=> s.userId._id === this.userService.currentUser._id);
   } 
 
   constructor(private userService: UserService) { }

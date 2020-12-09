@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { IComment } from '../shared/interfaces/comment';
 import { IPost } from '../shared/interfaces/post';
 import { IUser } from '../shared/interfaces/user';
 
@@ -25,10 +26,8 @@ export class PostService {
     );
   }
 
-  details(data): Observable<IPost> {
-    return this.http.post(`${apiUrl}/posts/details`, data, { withCredentials: true }).pipe(
-      tap((post: IPost) => this.newPost = post)
-    )
+  details(id: string): Observable<IPost<IComment>> {
+    return this.http.get<IPost<IComment>>(`${apiUrl}posts/details/${id}`, {withCredentials: true});
   }
 
   all(): Observable<IPost<IUser>[]> {

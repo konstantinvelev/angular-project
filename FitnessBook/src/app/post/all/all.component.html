@@ -1,16 +1,16 @@
-<div *ngIf="allPosts.length === 0">
+<div id="dif">
+    <div *ngIf="!!allPosts">Congratulations! You are first person in our site and you can make first post!</div>
 
-    There is no Themes!</div>
-
-<div class="row blog-page" *ngFor="let post of allPosts">
-    <div>
-        <div id="cheifdiv">
-            <h2>{{post.title}}</h2>
-            <div id="infoHolder">
-                <div id="username">{{post.userId.username}}</div>
-                <div id="likes">{{post.likes.length}} Likes</div>
-                <div id="detailsButton">
-                    <a id="details" routerLink="/user/register" class="navitem">Details</a>
+    <div class="row blog-page" *ngFor="let post of allPosts">
+        <div>
+            <div id="cheifdiv">
+                <h2>{{post.title}}</h2>
+                <div id="infoHolder">
+                    <div id="username">{{post.userId.username}}</div>
+                    <div id="likes">{{post.likes.length}} Likes</div>
+                    <div id="detailsButton">
+                        <a id="details" [routerLink]="['/post/details', post._id]" class="navitem">Details</a>
+                    </div>
                 </div>
             </div>
         </div>

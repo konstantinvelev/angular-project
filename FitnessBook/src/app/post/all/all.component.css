@@ -35,6 +35,15 @@ a {
     padding-bottom: 30px;
 }
 
+#diff {
+    padding-top: 200px;
+    padding-bottom: 200px;
+    background-image: url('../../../assets/background.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto;
+}
+
 #details:hover {
     background-color: black;
 }

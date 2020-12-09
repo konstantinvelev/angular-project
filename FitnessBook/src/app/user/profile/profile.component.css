@@ -13,15 +13,17 @@
     background-color: rgba(27, 26, 26, 0.747);
 }
 
-.profile h3 {
-    text-decoration: underline;
+#profilecheif {
+    padding-top: 110px;
+    padding-bottom: 110px;
+    background-image: url('../../../assets/background.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto;
 }
 
-.profile img {
-    width: 7em;
-    height: 7em;
-    margin: auto;
-    display: block;
+.profile h3 {
+    text-decoration: underline;
 }
 
 .flex {

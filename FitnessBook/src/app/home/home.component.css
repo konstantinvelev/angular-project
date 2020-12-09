@@ -1,5 +1,11 @@
-.text-center{
+.text-center {
     text-align: center;
     font-weight: 900;
     color: white;
+    padding-top: 200px;
+    padding-bottom: 200px;
+    background-image: url('../../assets/background.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto;
 }

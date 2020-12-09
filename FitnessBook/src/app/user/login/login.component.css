@@ -1,5 +1,14 @@
 /*login register forms  */
 
+#btn:hover {
+    text-decoration: underline;
+    text-decoration-color: rgb(255, 30, 0);
+}
+
+h1 {
+    padding-bottom: 60px;
+}
+
 #haveanaccount:hover {
     text-decoration: underline;
     text-decoration-color: rgb(255, 30, 0);
@@ -14,6 +23,7 @@
 
 form.login,
 form.register {
+    border-style: groove;
     padding-top: 20px;
     padding-bottom: 20px;
     width: 40%;
@@ -49,6 +59,7 @@ label {
 
 .login input,
 .register input {
+    border-style: inset;
     flex: 0 1 100%;
     border: 1px solid;
     padding: 0.3em;

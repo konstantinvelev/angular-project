@@ -1,24 +1,27 @@
-<div id="profilecheif" class="profile">
-    <h3>User Info:</h3>
-    <div class="flex">
-        <p>Username: </p>
-        <p>{{currentUser.username}}</p>
+<div id="profilecheif">
+    <div class="profile">
+        <h3>User Info:</h3>
+        <div class="flex">
+            <p>Username: </p>
+            <p>{{currentUser.username}}</p>
+        </div>
+        <div class="flex">
+            <p>Email: </p>
+            <p>{{currentUser.email}}</p>
+        </div>
+        <div *ngIf="aboutYou" class="flex">
+            <p>About you</p>
+            <p>{{currentUser.userInfo}}</p>
+        </div>
+        <h3>Posts</h3>
+        <div *ngFor="let post of postsForCurrentUser" class="flex">
+            <p>{{post}}</p>
+        </div>
+        <h3>Friends</h3>
+        <div *ngFor="let friend of currentUser.friends" class="flex">
+            <p>{{currentUser.friends}}</p>
+        </div>
+        <button id="edit-button">Edit</button>
     </div>
-    <div class="flex">
-        <p>Email: </p>
-        <p>{{currentUser.email}}</p>
-    </div>
-    <div *ngIf="aboutYou" class="flex">
-        <p>About you</p>
-        <p>{{currentUser.userInfo}}</p>
-    </div>
-    <h3>Posts</h3>
-    <div *ngFor="let post of postsForCurrentUser" class="flex">
-        <p>{{post}}</p>
-    </div>
-    <h3>Friends</h3>
-    <div *ngFor="let friend of currentUser.friends" class="flex">
-        <p>{{currentUser.friends}}</p>
-    </div>
-    <button id="edit-button">Edit</button>
+
 </div>

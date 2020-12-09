@@ -9,7 +9,7 @@
         <!-- Title -->
         <p class="field">
             <label for="title">Title</label>
-            <input #postTitle="ngModel" class="input-error" type="text" name="title" id="title" ngModel required minlength="4">
+            <input #postTitle="ngModel" class="input-error" placeholder="Title" type="text" name="title" id="title" ngModel required minlength="4">
         </p>
         <p class="error" *ngIf="postTitle.touched && postTitle.errors?.required">
             Title is required!
@@ -21,7 +21,7 @@
         <!-- imageUrl -->
         <p class="field field-icon">
             <label for="imageUrl">Image Url</label>
-            <input #postImageUrl="ngModel" class="input-error" type="text" name="imageUrl" id="imageUrl" ngModel required minlength="4">
+            <input #postImageUrl="ngModel" class="input-error" placeholder="Image Url" type="text" name="imageUrl" id="imageUrl" ngModel required minlength="4">
         </p>
         <p *ngIf="postImageUrl.touched && postImageUrl.errors?.minlength" class="error ">
             Image Url must be at least 4 characters!
@@ -30,7 +30,7 @@
         <!-- description -->
         <div class="field">
             <label for="description">Description</label>
-            <textarea #postDescription="ngModel" type="text" name="description" id="description" ngModel required minlength="10"></textarea>
+            <textarea #postDescription="ngModel" type="text" placeholder="Description" name="description" id="description" ngModel required minlength="10"></textarea>
         </div>
         <p class="error" *ngIf="postDescription.touched && postDescription.errors?.required">
             Description is required!

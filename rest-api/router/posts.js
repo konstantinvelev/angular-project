@@ -8,7 +8,7 @@ const { postController, commentController } = require('../controllers');
 router.get('/all', postController.getposts);
 router.post('/create', auth(), postController.createpost);
 
-// router.get('/:postId', postController.getpost);
+router.get('details/:id', postController.getpost);
 // router.post('/:postId', auth(), commentController.createcomment);
 // router.put('/:postId', auth(), postController.subscribe);
 // router.put('/:postId/comments/:commentId', auth(), commentController.editcomment);
