@@ -4,6 +4,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
 import { storageServiceProvider } from './storage.service';
+import { AuthGuard } from './guards/auth.guard';
 
 
 
@@ -17,7 +18,7 @@ import { storageServiceProvider } from './storage.service';
   ],
   providers: [
     storageServiceProvider,
-    //authGuard
+    AuthGuard
   ],
   exports: [
     FooterComponent,

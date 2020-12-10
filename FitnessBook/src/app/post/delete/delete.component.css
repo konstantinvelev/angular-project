@@ -133,3 +133,11 @@ p.error {
     color: red;
     padding-top: 0;
 }
+
+h1 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-align: center;
+    text-decoration: underline;
+    text-decoration-color: red;
+}

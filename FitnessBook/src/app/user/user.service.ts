@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { IUser } from '../shared/interfaces/user';
@@ -21,7 +21,14 @@ export class UserService {
     private http: HttpClient
   ) { }
 
-  login(data: any): Observable<IUser> {
+  getCurrentUserProfile(): Observable<any> {
+    return this.http.get(`${apiUrl}/users/profile`, { withCredentials: true }).pipe(
+      tap(((user: IUser) => this.currentUser = user)),
+      catchError(() => { this.currentUser = null; return of(null); })
+    );
+  }
+
+  login(data: any): Observable<any> {
     return this.http.post(`${apiUrl}/users/login`, data, { withCredentials: true }).pipe(
       tap((user: IUser) => this.currentUser = user)
     );

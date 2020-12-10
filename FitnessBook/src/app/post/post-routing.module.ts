@@ -1,12 +1,15 @@
 import { RouterModule, Routes } from "@angular/router";
+import { AuthGuard } from '../core/guards/auth.guard';
 import { AllComponent } from './all/all.component';
 import { CreateComponent } from './create/create.component';
+import { DeleteComponent } from './delete/delete.component';
 import { DetailsComponent } from './details/details.component';
+import { EditComponent } from './edit/edit.component';
 
 const routes: Routes = [
     {
         path: 'post',
-        //canActivateChild: [ AuthGuard],
+        canActivateChild: [ AuthGuard],
         children:[
             {
                 path: 'create',
@@ -29,7 +32,24 @@ const routes: Routes = [
                 component: DetailsComponent,
                 data:{
                     isLogged: true,
-                    title: 'Details Page'
+                    title: 'Details Post Page'
+                }
+            },
+            {
+                path: 'edit/:id',
+                component: EditComponent,
+                data:{
+                    isLogged: true,
+                    title: 'Edit Post Page'
+                }
+            },
+
+            {
+                path: 'delete/:id',
+                component: DeleteComponent,
+                data:{
+                    isLogged: true,
+                    title: 'Delete Post Page'
                 }
             },
         ]

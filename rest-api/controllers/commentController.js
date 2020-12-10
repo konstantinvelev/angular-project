@@ -1,11 +1,11 @@
 const { userModel, postModel, commentModel } = require('../models');
 
-function newcomment(text, userId, postId) {
-    return commentModel.create({ text, userId, postId })
+function newcomment(content, userId, postId) {
+    return commentModel.create({ content, userId, postId })
         .then(comment => {
             return Promise.all([
                 userModel.updateOne({ _id: userId }, { $push: { comments: comment._id }, $addToSet: { posts: postId } }),
-                postModel.findByIdAndUpdate({ _id: postId }, { $push: { comments: comment._id }, $addToSet: { subscribers: userId } }, { new: true })
+                postModel.findByIdAndUpdate({ _id: postId }, { $push: { comments: comment._id } }, { new: true })
             ])
         })
 }
@@ -24,11 +24,9 @@ function getLatestscomments(req, res, next) {
 }
 
 function createcomment(req, res, next) {
-    const { postId } = req.params;
-    const { _id: userId } = req.user;
-    const { commentText } = req.body;
+    const { content, userId, postId } = req.body;
 
-    newcomment(commentText, userId, postId)
+    newcomment(content, userId, postId)
         .then(([_, updatedpost]) => res.status(200).json(updatedpost))
         .catch(next);
 }
@@ -80,8 +78,18 @@ function like(req, res, next) {
         .catch(next)
 }
 
+function getcomments(req, res, next) {
+    const { postId } = req.params;
+
+    commentModel.find()
+        .populate('userId')
+        .then(comments => res.json(comments = comments.filter(s => s.postId === postId)))
+        .catch(next);
+}
+
 module.exports = {
     getLatestscomments,
+    getcomments,
     newcomment,
     createcomment,
     editcomment,

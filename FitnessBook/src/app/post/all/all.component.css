@@ -25,6 +25,12 @@ a {
     border: rgb(255, 30, 0);
 }
 
+h1 {
+    text-align: center;
+    font-weight: 900;
+    color: black
+}
+
 #cheif {
     display: inline-flex;
     width: 65%;

@@ -7,5 +7,6 @@ export interface IUser<T = string>  extends IBase{
     email: string;
     password: string; 
     posts: IPost[];
-    friends: IUser[];
+    followers: IUser[];
+    following: IUser[];
 }

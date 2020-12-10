@@ -39,7 +39,15 @@ const userSchema = new mongoose.Schema({
     }],
     comments: [{
         type: ObjectId,
-        ref: "comment"
+        ref: "Comment"
+    }],
+    following: [{
+        type: ObjectId,
+        ref: "User"
+    }],
+    followers: [{
+        type: ObjectId,
+        ref: "User"
     }]
 }, { timestamps: { createdAt: 'created_at' } });
 

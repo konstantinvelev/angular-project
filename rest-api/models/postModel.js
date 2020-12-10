@@ -24,9 +24,9 @@ const postSchema = new mongoose.Schema({
     }],
     comments: [{
         type: ObjectId,
-        ref: "Comments"
+        ref: "Comment"
     }]
 
 }, { timestamps: { createdAt: 'created_at' } });
 
-module.exports = mongoose.model('post', postSchema);
+module.exports = mongoose.model('Post', postSchema);

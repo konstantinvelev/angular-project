@@ -1,3 +1,4 @@
+const { compare } = require('bcrypt');
 const { postModel } = require('../models');
 const userModel = require('../models/userModel');
 
@@ -9,15 +10,11 @@ function getposts(req, res, next) {
 }
 
 function getpost(req, res, next) {
-    const { postId } = req.params;
+    const postId = req.params.id;
 
     postModel.findById(postId)
-        .populate({
-            path: 'comments',
-            populate: {
-                path: 'userId'
-            }
-        })
+        .populate('comments')
+        .populate('userId')
         .then(post => res.json(post))
         .catch(next);
 
@@ -46,9 +43,29 @@ function subscribe(req, res, next) {
         .catch(next);
 }
 
+
+function deletepost(req, res, next) {
+    const postId = req.params.id;
+    const { _id: userId } = req.user;
+
+    Promise.all([
+            postModel.findOneAndDelete({ _id: postId }),
+            userModel.findOneAndUpdate({ _id: userId }, { $pull: { posts: postId } }),
+        ])
+        .then(([deletedOne, _]) => {
+            if (deletedOne) {
+                res.status(200).json(deletedOne)
+            } else {
+                res.status(401).json({ message: `Not allowed!` });
+            }
+        })
+        .catch(next);
+}
+
 module.exports = {
     getposts,
     createpost,
+    deletepost,
     getpost,
     subscribe,
 }

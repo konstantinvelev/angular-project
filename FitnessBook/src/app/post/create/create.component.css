@@ -1,5 +1,16 @@
 /*login register forms  */
 
+#btn:hover {
+    text-decoration: underline;
+    text-decoration-color: rgb(255, 30, 0);
+}
+
+label {
+    padding: 0;
+    font-size: 15px;
+    font-weight: 900;
+}
+
 #haveanaccount:hover {
     text-decoration: underline;
     text-decoration-color: rgb(255, 30, 0);
@@ -14,6 +25,11 @@
 
 .post label {
     text-align: center;
+}
+
+form {
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 form.post {
@@ -99,4 +115,17 @@ p.error {
     border-radius: 0.3em;
     color: red;
     padding-top: 0;
+}
+
+.post {
+    border-style: groove;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 40%;
+    margin: 2em auto 0;
+    text-align: center;
+}
+
+h1 {
+    padding-bottom: 50px;
 }

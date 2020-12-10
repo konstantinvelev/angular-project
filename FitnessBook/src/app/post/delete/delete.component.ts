@@ -7,11 +7,12 @@ import { UserService } from 'src/app/user/user.service';
 import { PostService } from '../post.service';
 
 @Component({
-  selector: 'app-details',
-  templateUrl: './details.component.html',
-  styleUrls: ['./details.component.css']
+  selector: 'app-delete',
+  templateUrl: './delete.component.html',
+  styleUrls: ['./delete.component.css']
 })
-export class DetailsComponent implements OnInit {
+export class DeleteComponent implements OnInit {
+
 
   get isCreator(): boolean{
     return this.post.userId._id === this.userService.currentUser._id;
@@ -22,7 +23,7 @@ export class DetailsComponent implements OnInit {
   post: IPost<IComment> = null;
 
   constructor(
-    postService: PostService,
+    private postService: PostService,
     private userService: UserService,
     private router: Router,
     private commentService: CommentService,
@@ -31,26 +32,22 @@ export class DetailsComponent implements OnInit {
     const id = activatedRoute.snapshot.params.id;
     postService.details(id).subscribe(post => {
       this.post = post;
-      commentService.getAllForPost(id).subscribe(comments => {
-        this.post.comments = comments
-      });
     });
   }
 
   ngOnInit(): void {
-
   }
 
-  submitFormHandler(content ): void {
-    const data = { content:content.comment, postId: this.post._id, userId: this.post.userId._id };
+  deletePost(id): void {
     this.isLoading = true;
-    this.commentService.postComment(data).subscribe({
+    this.postService.delete(id).subscribe({
       next: () => {
         this.isLoading = false;
-        this.router.navigateByUrl(`/post/details/${this.post._id}`);
+        this.router.navigate([`/post/all`]);
       },
       error: (err) => {
-        console.log(err.message);
+        this.isLoading = false;
+        //this.errorMessage = err.message;
       }
     })
   }

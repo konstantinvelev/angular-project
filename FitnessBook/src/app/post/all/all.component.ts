@@ -12,9 +12,13 @@ import { PostService } from '../post.service';
 })
 export class AllComponent implements OnInit {
 
-  @Input() post : IPost
+  @Input() post: IPost;
 
-  allPosts: IPost[];  
+  allPosts: IPost[] | null;
+
+  get isEmpty(): boolean {
+    return this.allPosts === undefined ? true : false;
+  }
 
   constructor(
     private postService: PostService,

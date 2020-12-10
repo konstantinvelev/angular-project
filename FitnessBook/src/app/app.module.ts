@@ -12,6 +12,7 @@ import { UserModule } from './user/user.module';
 import { PostModule } from './post/post.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AboutComponent } from './about/about.component';
+import { CommentModule } from './comment/comment.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AboutComponent } from './about/about.component';
     HttpClientModule,
     AppRoutingModule,
     PostModule,
+    CommentModule,
     UserModule,
   ],
   providers: [],

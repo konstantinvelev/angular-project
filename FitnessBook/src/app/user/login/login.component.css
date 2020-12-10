@@ -97,18 +97,9 @@ label {
     background-color: #e9ecef;
 }
 
-.login a,
-.register a {
-    color: #007bff;
-}
-
 .login a:hover,
 .register a:hover {
     cursor: pointer;
-}
-
-.register .tel {
-    padding-right: 0.8em;
 }
 
 .login .field,

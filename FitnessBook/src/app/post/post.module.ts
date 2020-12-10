@@ -7,6 +7,8 @@ import { SharedModule } from '../shared/shared.module';
 import { PostRoutingModule } from './post-routing.module';
 import { RouterModule } from '@angular/router';
 import { DetailsComponent } from './details/details.component';
+import { EditComponent } from './edit/edit.component';
+import { DeleteComponent } from './delete/delete.component';
 
 
 
@@ -14,7 +16,9 @@ import { DetailsComponent } from './details/details.component';
   declarations: [
     CreateComponent,
     AllComponent,
-    DetailsComponent
+    DetailsComponent,
+    EditComponent,
+    DeleteComponent
   ],
   imports: [
     CommonModule,
@@ -23,15 +27,16 @@ import { DetailsComponent } from './details/details.component';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule,
   ],
   providers: [
-    PostModule
+    PostModule,
   ],
   exports: [
     CreateComponent,
     AllComponent,
-    DetailsComponent
+    DetailsComponent,
+    EditComponent,
+    DeleteComponent
   ]
 })
 export class PostModule { }

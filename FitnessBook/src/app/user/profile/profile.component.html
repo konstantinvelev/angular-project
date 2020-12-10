@@ -18,8 +18,8 @@
             <p>{{post}}</p>
         </div>
         <h3>Friends</h3>
-        <div *ngFor="let friend of currentUser.friends" class="flex">
-            <p>{{currentUser.friends}}</p>
+        <div *ngFor="let friend of currentUser.followers" class="flex">
+            <p>{{friend.username}}</p>
         </div>
         <button id="edit-button">Edit</button>
     </div>

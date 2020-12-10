@@ -10,8 +10,7 @@ import { UserService } from '../user.service';
 export class LoginComponent implements OnInit {
 
   isLoading = false;
-  errorMessege = '';
-
+  errorMessage = '';
   constructor(
     private userService: UserService,
     private router: Router
@@ -20,20 +19,18 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  submitFormHandler(formValue: { email: string, password: string }){
+  submitFormHandler(formValue: { email: string, password: string }): void {
     this.isLoading = true;
-    this.errorMessege = '';
+    this.errorMessage = '';
     this.userService.login(formValue).subscribe({
-      next: () => {
+      next: (data) => {
         this.isLoading = false;
-        this.router.navigate(['/home']);
+        this.router.navigate(['/']);
       },
       error: (err) => {
+        this.errorMessage = 'ERROR!';
         this.isLoading = false;
-        this.errorMessege = err.message;
-        console.error(err);
       }
-    })
+    });
   }
-
 }

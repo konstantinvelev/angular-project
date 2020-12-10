@@ -14,7 +14,7 @@ const apiUrl = environment.apiUrl
 })
 export class PostService {
 
-  newPost: IPost | null;
+  currentPost: IPost | null;
 
   constructor(
     private http: HttpClient
@@ -22,15 +22,20 @@ export class PostService {
 
   create(data): Observable<IPost<IUser>> {
     return this.http.post<IPost<IUser>>(`${apiUrl}/posts/create`, data, { withCredentials: true }).pipe(
-      tap((post: IPost) => this.newPost = post)
+      tap((post: IPost) => this.currentPost = post)
     );
   }
 
-  details(id: string): Observable<IPost<IComment>> {
-    return this.http.get<IPost<IComment>>(`${apiUrl}posts/details/${id}`, {withCredentials: true});
+  details(id: string): Observable<IPost> {
+    return this.http.get<IPost>(`${apiUrl}/posts/details/${id}`, { withCredentials: true });
   }
 
   all(): Observable<IPost<IUser>[]> {
     return this.http.get<IPost<IUser>[]>(`${apiUrl}/posts/all`, { withCredentials: true });
   }
+
+  delete(id: string): Observable<IPost> {
+    return this.http.get<IPost>(`${apiUrl}/posts/delete/${id}`, { withCredentials: true });
+  }
+
 }
