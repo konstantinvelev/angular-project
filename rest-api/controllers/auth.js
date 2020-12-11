@@ -97,7 +97,7 @@ function editProfileInfo(req, res, next) {
     const { _id: userId } = req.user;
     const { username, email, userInfo } = req.body;
 
-    userModel.findOneAndUpdate({ _id: userId }, { username, email, userInfo, newPassword }, { runValidators: true, new: true })
+    userModel.findOneAndUpdate({ _id: userId }, { username, email, userInfo }, { runValidators: true, new: true })
         .then(x => { res.status(200).json(x) })
         .catch(next);
 }
@@ -106,7 +106,6 @@ function editProfileInfo(req, res, next) {
 module.exports = {
     login,
     register,
-    // getById,
     logout,
     getProfileInfo,
     editProfileInfo,

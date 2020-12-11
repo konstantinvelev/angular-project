@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CommentService } from 'src/app/comment/comment.service';
 import { IComment } from 'src/app/shared/interfaces/comment';
 import { IPost } from 'src/app/shared/interfaces/post';
+import { IUser } from 'src/app/shared/interfaces/user';
 import { UserService } from 'src/app/user/user.service';
 import { PostService } from '../post.service';
 
@@ -19,6 +20,12 @@ export class DetailsComponent implements OnInit {
 
   get isLiked(): boolean {
     return this.post.likes.includes(this.userService.currentUser._id);
+  }
+
+  isOnEdit = false;
+
+  get currentUser(): IUser {
+    return this.userService.currentUser;
   }
 
   isLoading = false;
@@ -58,7 +65,6 @@ export class DetailsComponent implements OnInit {
     })
   }
 
-
   likeHandler(): void {
     this.isLoading = true;
     this.errorMessage = '';
@@ -74,4 +80,39 @@ export class DetailsComponent implements OnInit {
     })
   }
 
+  editComment(): void {
+    this.isOnEdit = true;
+  }
+
+  editedCommentHandler(data): void {
+    this.isLoading = true;
+    this.errorMessage = '';
+    this.commentService.editComment({ commentId: data.commentId, user: this.userService.currentUser, content: data.newComment }).subscribe({
+      next: () => {
+        this.isLoading = false;
+        this.isOnEdit= false;
+        window.location.reload();
+      },
+      error: (err) => {
+        this.errorMessage = err.message;
+        console.log(err.message);
+      }
+    })
+  }
+
+  deleteComment(id): void {
+    this.isLoading = true;
+    this.errorMessage = '';
+    this.commentService.deleteComment({ commentId: id, userId: this.userService.currentUser._id, postId: this.post._id }).subscribe({
+      next: () => {
+        this.isLoading = false;
+        this.isOnEdit= false;
+        window.location.reload();
+      },
+      error: (err) => {
+        this.errorMessage = err.message;
+        console.log(err.message);
+      }
+    })
+  }
 }

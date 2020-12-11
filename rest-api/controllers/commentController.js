@@ -32,12 +32,12 @@ function createcomment(req, res, next) {
 }
 
 function editcomment(req, res, next) {
-    const { commentId } = req.params;
-    const { commentText } = req.body;
-    const { _id: userId } = req.user;
+    const commentId = req.params.id;
+    const comment = req.body.content.comment;
+    const { _id: userId } = req.body.user;
 
     // if the userId is not the same as this one of the comment, the comment will not be updated
-    commentModel.findOneAndUpdate({ _id: commentId, userId }, { text: commentText }, { new: true })
+    commentModel.findOneAndUpdate({ _id: commentId, userId }, { content: comment }, { new: true })
         .then(updatedcomment => {
             if (updatedcomment) {
                 res.status(200).json(updatedcomment);
@@ -49,8 +49,17 @@ function editcomment(req, res, next) {
 }
 
 function deletecomment(req, res, next) {
-    const { commentId, postId } = req.params;
-    const { _id: userId } = req.user;
+    const original = req.originalUrl;
+    const arr = original.split('/');
+    const queryParams = arr[4];
+    const firstStep = queryParams.split('?');
+    const commentId = firstStep[0];
+
+    const secondStep = firstStep[1].split('=');
+    const userId = secondStep[2];
+    const thirthStep = secondStep[1].split('&');
+    const postId = thirthStep[0];
+
 
     Promise.all([
             commentModel.findOneAndDelete({ _id: commentId, userId }),

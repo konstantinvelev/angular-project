@@ -26,5 +26,13 @@ export class CommentService {
   getAllForPost(id): Observable<IComment<IUser>[]> {
     return this.http.get<IComment<IUser>[]>(`${apiUrl}/comments/all/${id}`, { withCredentials: true });
   }
+
+  editComment(data): Observable<any>{
+    return this.http.put<any>(`${apiUrl}/comments/edit/${data.commentId}`, {content: data.content, user: data.user}, { withCredentials: true });
+  }
+
+  deleteComment(data): Observable<any> {
+    return this.http.get<any>(`${apiUrl}/comments/delete/${data.commentId}?postId=${data.postId}&userId=${data.userId}`, { withCredentials: true });
+  }
 }
 

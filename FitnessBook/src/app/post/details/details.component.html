@@ -19,9 +19,11 @@
 
             </div>
             <div class="post-description">
-                <h5>{{post.title}}</h5>
+
+                <h2>{{post.title}}</h2>
                 <img [src]="post.imageUrl" alt="">
                 <p>{{post.description}}</p>
+
                 <div class="stats">
                     <button *ngIf="!isLiked" (click)="likeHandler()" class="btn btn-primary stat-item">
                         <i class="fa fa-thumbs-up icon"></i> {{post.likes.length}}
@@ -54,8 +56,29 @@
                             <div class="comment-heading">
                                 <h4 class="user">{{comment.userId.username}}</h4>
                                 <h5 class="time">{{comment.created_at}}</h5>
+
+                                <p *ngIf="!isOnEdit">{{comment.content}}</p>
+
+                                <div *ngIf="comment.userId._id === currentUser._id">
+                                    <a (click)="editComment()" class="uglybutton style= float:right; margin: 10%;">Edit Comment</a>
+                                    <div *ngIf="isOnEdit">
+                                        <form id="editForm" #f="ngForm" (ngSubmit)="editedCommentHandler({commentId:comment._id, newComment:f.value})">
+                                            <div class="input-group">
+                                                <input #editcomment="ngModel" class="input-error" placeholder="Comment" type="text" name="comment" id="comment" [ngModel]="comment.content" required minlength="4">
+
+                                                <p class="error" *ngIf="editcomment.touched && editcomment.errors?.required">
+                                                    Comment is required!
+                                                </p>
+                                                <p class="error" *ngIf="editcomment.errors?.minlength">
+                                                    Comment must be at least 4 characters!
+                                                </p>
+                                                <button class="btn btn-primary" [disabled]="isLoading || f.invalid">Comment</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <a (click)="deleteComment(comment._id)" class="uglybutton">Delete Post</a>
+                                </div>
                             </div>
-                            <p>{{comment.content}}</p>
                         </div>
                     </div>
                 </div>
