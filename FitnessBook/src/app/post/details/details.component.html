@@ -16,9 +16,6 @@
                         <a [routerLink]="['/post/delete', post._id]" class="btn-block col-xs-3 btn btn-danger">Delete Post</a>
                     </div>
                 </div>
-                <div id="creatorButtons text-left ">
-
-                </div>
 
             </div>
             <div class="post-description">
@@ -26,9 +23,13 @@
                 <img [src]="post.imageUrl" alt="">
                 <p>{{post.description}}</p>
                 <div class="stats">
-                    <a [routerLink]="['/post/like', post._id]" class="btn btn-primary stat-item">
-                        <i class="fa fa-thumbs-up icon"></i>{{post.likes.length}}
-                    </a>
+                    <button *ngIf="!isLiked" (click)="likeHandler()" class="btn btn-primary stat-item">
+                        <i class="fa fa-thumbs-up icon"></i> {{post.likes.length}}
+                    </button>
+
+                    <button *ngIf="isLiked" class="btn btn-success stat-item">
+                        <i class="fa fa-thumbs-up icon"></i> {{post.likes.length}}
+                    </button>
                 </div>
             </div>
             <form #c="ngForm" (ngSubmit)="submitFormHandler(c.value)">

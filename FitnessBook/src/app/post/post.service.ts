@@ -40,8 +40,11 @@ export class PostService {
     return this.http.get<IPost<IUser>[]>(`${apiUrl}/posts/all`, { withCredentials: true });
   }
 
-  delete(id: string): Observable<IPost> {
-    return this.http.get<IPost>(`${apiUrl}/posts/delete/${id}`, { withCredentials: true });
+  delete(id: string): Observable<any> {
+    return this.http.get<any>(`${apiUrl}/posts/delete/${id}`, { withCredentials: true });
   }
 
+  like(data): Observable<any> {
+    return this.http.put<any>(`${apiUrl}/posts/like/${data.postId}`, data.user, { withCredentials: true });
+  }
 }

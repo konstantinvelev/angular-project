@@ -40,9 +40,10 @@ function createpost(req, res, next) {
 }
 
 function subscribe(req, res, next) {
-    const postId = req.params.postId;
-    const { _id: userId } = req.user;
-    postModel.findByIdAndUpdate({ _id: postId }, { $addToSet: { subscribers: userId } }, { new: true })
+    const postId = req.params.id;
+    const { _id: userId } = req.body;
+
+    postModel.findByIdAndUpdate({ _id: postId }, { $addToSet: { likes: userId } }, { new: true })
         .then(updatedpost => {
             res.status(200).json(updatedpost)
         })

@@ -13,16 +13,21 @@ import { PostService } from '../post.service';
 })
 export class DetailsComponent implements OnInit {
 
-  get isCreator(): boolean{
+  get isCreator(): boolean {
     return this.post.userId._id === this.userService.currentUser._id;
   }
 
+  get isLiked(): boolean {
+    return this.post.likes.includes(this.userService.currentUser._id);
+  }
+
   isLoading = false;
+  errorMessage = '';
 
   post: IPost<IComment> = null;
 
   constructor(
-    postService: PostService,
+    private postService: PostService,
     private userService: UserService,
     private commentService: CommentService,
     activatedRoute: ActivatedRoute
@@ -37,15 +42,33 @@ export class DetailsComponent implements OnInit {
 
   }
 
-  submitFormHandler(content ): void {
-    const data = { content:content.comment, postId: this.post._id, userId: this.post.userId._id };
+  submitFormHandler(content): void {
+    const data = { content: content.comment, postId: this.post._id, userId: this.post.userId._id };
     this.isLoading = true;
+    this.errorMessage = '';
     this.commentService.postComment(data).subscribe({
       next: () => {
         this.isLoading = false;
         window.location.reload();
       },
       error: (err) => {
+        this.errorMessage = err.message;
+        console.log(err.message);
+      }
+    })
+  }
+
+
+  likeHandler(): void {
+    this.isLoading = true;
+    this.errorMessage = '';
+    this.postService.like({ postId: this.post._id, user: this.userService.currentUser }).subscribe({
+      next: () => {
+        this.isLoading = false;
+        window.location.reload();
+      },
+      error: (err) => {
+        this.errorMessage = err.message;
         console.log(err.message);
       }
     })

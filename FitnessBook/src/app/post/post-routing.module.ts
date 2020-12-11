@@ -43,7 +43,6 @@ const routes: Routes = [
                     title: 'Edit Post Page'
                 }
             },
-
             {
                 path: 'delete/:id',
                 component: DeleteComponent,
