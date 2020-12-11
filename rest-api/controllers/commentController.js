@@ -79,11 +79,12 @@ function like(req, res, next) {
 }
 
 function getcomments(req, res, next) {
-    const { postId } = req.params;
+    const postId = req.params.id;
 
     commentModel.find()
         .populate('userId')
-        .then(comments => res.json(comments = comments.filter(s => s.postId === postId)))
+        .populate('postId')
+        .then(comments => res.json(comments /*.where(s => s.postId == postId)*/ ))
         .catch(next);
 }
 

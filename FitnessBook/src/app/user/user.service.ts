@@ -45,4 +45,10 @@ export class UserService {
       tap(() => this.currentUser = null)
     );
   }
+
+  editProfile(data): Observable<IUser>{
+    return this.http.put(`${apiUrl}/users/profile`, data.formData, { withCredentials: true }).pipe(
+      tap((user: IUser) => this.currentUser = user)
+    )
+  }
 }

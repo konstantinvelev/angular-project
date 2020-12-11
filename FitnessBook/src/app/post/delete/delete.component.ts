@@ -43,7 +43,7 @@ export class DeleteComponent implements OnInit {
     this.postService.delete(id).subscribe({
       next: () => {
         this.isLoading = false;
-        this.router.navigate([`/post/all`]);
+        this.router.navigate(['post/all']);
       },
       error: (err) => {
         this.isLoading = false;

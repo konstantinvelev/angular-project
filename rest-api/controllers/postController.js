@@ -1,5 +1,6 @@
 const { compare } = require('bcrypt');
 const { postModel } = require('../models');
+const commentModel = require('../models/commentModel');
 const userModel = require('../models/userModel');
 
 function getposts(req, res, next) {
@@ -14,10 +15,15 @@ function getpost(req, res, next) {
 
     postModel.findById(postId)
         .populate('comments')
+        .populate({
+            path: 'comments',
+            populate: {
+                path: 'userId'
+            }
+        })
         .populate('userId')
         .then(post => res.json(post))
         .catch(next);
-
 
 }
 
@@ -50,9 +56,10 @@ function deletepost(req, res, next) {
 
     Promise.all([
             postModel.findOneAndDelete({ _id: postId }),
+            commentModel.deleteMany({ "postId": postId }),
             userModel.findOneAndUpdate({ _id: userId }, { $pull: { posts: postId } }),
         ])
-        .then(([deletedOne, _]) => {
+        .then(([deletedOne, _, __]) => {
             if (deletedOne) {
                 res.status(200).json(deletedOne)
             } else {
@@ -62,8 +69,26 @@ function deletepost(req, res, next) {
         .catch(next);
 }
 
+function editpost(req, res, next) {
+    const postId = req.params.id;
+    const { title, imageUrl, description } = req.body;
+    const { _id: userId } = req.user;
+
+    // if the userId is not the same as this one of the comment, the comment will not be updated
+    postModel.findOneAndUpdate({ _id: postId, userId }, { title: title, imageUrl: imageUrl, description: description }, { new: true })
+        .then(updatedpost => {
+            if (updatedpost) {
+                res.status(200).json(updatedpost);
+            } else {
+                res.status(401).json({ message: `Not allowed!` });
+            }
+        })
+        .catch(next);
+}
+
 module.exports = {
     getposts,
+    editpost,
     createpost,
     deletepost,
     getpost,

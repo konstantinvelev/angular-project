@@ -9,19 +9,19 @@
             <p>Email: </p>
             <p>{{currentUser.email}}</p>
         </div>
-        <div *ngIf="aboutYou" class="flex">
-            <p>About you</p>
+        <div class="flex">
+            <p>About you: </p>
             <p>{{currentUser.userInfo}}</p>
         </div>
-        <h3>Posts</h3>
-        <div *ngFor="let post of postsForCurrentUser" class="flex">
-            <p>{{post}}</p>
+        <div class="flex">
+            <p>Posts: </p>
+            <p>{{currentUser.posts.length}}</p>
         </div>
         <h3>Friends</h3>
         <div *ngFor="let friend of currentUser.followers" class="flex">
             <p>{{friend.username}}</p>
         </div>
-        <button id="edit-button">Edit</button>
+        <a [routerLink]="['/user/edit']" class="btn btn-primary">Edit Profile</a>
     </div>
 
 </div>

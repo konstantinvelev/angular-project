@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { CommentService } from 'src/app/comment/comment.service';
 import { IComment } from 'src/app/shared/interfaces/comment';
 import { IPost } from 'src/app/shared/interfaces/post';
@@ -24,16 +24,12 @@ export class DetailsComponent implements OnInit {
   constructor(
     postService: PostService,
     private userService: UserService,
-    private router: Router,
     private commentService: CommentService,
     activatedRoute: ActivatedRoute
   ) {
     const id = activatedRoute.snapshot.params.id;
     postService.details(id).subscribe(post => {
       this.post = post;
-      commentService.getAllForPost(id).subscribe(comments => {
-        this.post.comments = comments
-      });
     });
   }
 
@@ -47,7 +43,7 @@ export class DetailsComponent implements OnInit {
     this.commentService.postComment(data).subscribe({
       next: () => {
         this.isLoading = false;
-        this.router.navigateByUrl(`/post/details/${this.post._id}`);
+        window.location.reload();
       },
       error: (err) => {
         console.log(err.message);

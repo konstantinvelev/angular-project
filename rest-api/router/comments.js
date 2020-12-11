@@ -6,6 +6,6 @@ const { commentController } = require('../controllers');
 // middleware that is specific to this router
 
 router.post('/create', commentController.createcomment);
-router.get('/all', commentController.getcomments);
+router.get('/all/:id', commentController.getcomments);
 
 module.exports = router

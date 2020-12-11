@@ -1,14 +1,7 @@
 /*login register forms  */
 
-#btn:hover {
-    text-decoration: underline;
-    text-decoration-color: rgb(255, 30, 0);
-}
-
-label {
-    padding: 0;
-    font-size: 15px;
-    font-weight: 900;
+h1 {
+    padding-bottom: 60px;
 }
 
 #haveanaccount:hover {
@@ -23,16 +16,15 @@ label {
     font-weight: 900;
 }
 
-.post label {
-    text-align: center;
+label {
+    padding: 0;
+    font-size: 15px;
+    font-weight: 900;
 }
 
-form {
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-
-form.post {
+form.login,
+form.register {
+    border-style: groove;
     padding-top: 20px;
     padding-bottom: 20px;
     width: 40%;
@@ -40,23 +32,27 @@ form.post {
     text-align: center;
 }
 
-.post fieldset {
+.login fieldset,
+.register fieldset {
     border-radius: 0.3em;
     padding: 0.8em;
     background-color: #ffffff;
 }
 
-.post h2 {
+.login h2,
+.register h2 {
     padding-top: 0;
     border-bottom: none;
 }
 
-.post p {
+.login p,
+.register p {
     padding-bottom: 0;
     padding-top: 1.5rem;
 }
 
-.post input {
+.login input,
+.register input {
     flex: 0 1 100%;
     border: 1px solid;
     padding: 0.3em;
@@ -66,7 +62,8 @@ form.post {
     border-bottom-right-radius: 0.3em;
 }
 
-.post textarea {
+.login textarea,
+.register textarea {
     flex: 0 1 100%;
     border: 1px solid;
     padding: 0.3em;
@@ -76,11 +73,13 @@ form.post {
     border-bottom-right-radius: 0.3em;
 }
 
-.post select {
+.login select,
+.register select {
     border-color: black;
 }
 
-.post button {
+.login button,
+.register button {
     color: white;
     border: none;
     border-radius: 0.3em;
@@ -92,7 +91,8 @@ form.post {
     font-weight: 900;
 }
 
-.post i {
+.login i,
+.register i {
     border: 1px solid;
     border-right: none;
     padding: 0.55em;
@@ -101,31 +101,23 @@ form.post {
     background-color: #e9ecef;
 }
 
-.post a:hover {
+.login a:hover,
+.register a:hover {
     cursor: pointer;
 }
 
-.post .field {
+.login .field,
+.register .field {
     display: flex;
     padding-bottom: 0;
 }
+
+
+/* errors  */
 
 p.error {
     text-align: center;
     border-radius: 0.3em;
     color: red;
     padding-top: 0;
-}
-
-.post {
-    border-style: groove;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    width: 40%;
-    margin: 2em auto 0;
-    text-align: center;
-}
-
-h1 {
-    padding-bottom: 50px;
 }

@@ -1,5 +1,6 @@
 import { RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from '../core/guards/auth.guard';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
@@ -31,6 +32,14 @@ const routes: Routes = [
                 data:{
                     isLogged: true,
                     title: 'Profile Page'
+                }
+            },
+            {
+                path: 'edit',
+                component: EditProfileComponent,
+                data:{
+                    isLogged: true,
+                    title: 'Edit Profile Page'
                 }
             },
         ]

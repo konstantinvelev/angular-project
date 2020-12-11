@@ -95,20 +95,13 @@ function getProfileInfo(req, res, next) {
 
 function editProfileInfo(req, res, next) {
     const { _id: userId } = req.user;
-    const { tel, username, email } = req.body;
+    const { username, email, userInfo, newPassword } = req.body;
 
-    userModel.findOneAndUpdate({ _id: userId }, { tel, username, email }, { runValidators: true, new: true })
+    userModel.findOneAndUpdate({ _id: userId }, { username, email, userInfo, newPassword }, { runValidators: true, new: true })
         .then(x => { res.status(200).json(x) })
         .catch(next);
 }
 
-// function getById(req, res, next) {
-//     const user = req.user;
-
-//     userModel.findById(user._id)
-//         .then(user => { res.send(user).status(200) })
-//         .catch(next);
-// }
 
 module.exports = {
     login,

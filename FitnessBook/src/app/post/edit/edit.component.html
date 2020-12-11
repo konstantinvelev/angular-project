@@ -1,1 +1,58 @@
-<p>edit works!</p>
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+
+<div *ngIf="isLoading">
+    <app-loader [isLoading]="isLoading"></app-loader>
+</div>
+
+<form #c="ngForm" class="post" (ngSubmit)="submitFormHandler(c.value)" *ngIf="!isLoading">
+    <fieldset>
+        <h1>Edit post</h1>
+
+        <!-- Title -->
+        <label for="title">Title</label>
+        <p class="field">
+            <input #postTitle="ngModel" class="input-error" placeholder="Title" type="text" name="title" id="title" [ngModel]="post.title" required minlength="4">
+        </p>
+        <p class="error" *ngIf="postTitle.touched && postTitle.errors?.required">
+            Title is required!
+        </p>
+        <p *ngIf="postTitle.touched && postTitle.errors?.minlength" class="error ">
+            Title must be at least 4 characters!
+        </p>
+
+        <!-- imageUrl -->
+        <label for="imageUrl">Image Url</label>
+        <p class="field field-icon">
+            <input #postImageUrl="ngModel" class="input-error" value="{{post.imageUrl}}" placeholder="Image Url" type="text" name="imageUrl" id="imageUrl" [ngModel]="post.imageUrl" required minlength="4">
+        </p>
+        <p *ngIf="postImageUrl.touched && postImageUrl.errors?.minlength" class="error ">
+            Image Url must be at least 4 characters!
+        </p>
+
+        <!-- description -->
+        <label for="description">Description</label>
+        <div class="field">
+            <textarea #postDescription="ngModel" type="text" placeholder="Description" name="description" id="description" [ngModel]="post.description" required minlength="10">
+                {{post.description}}
+            </textarea>
+        </div>
+        <p class="error" *ngIf="postDescription.touched && postDescription.errors?.required">
+            Description is required!
+        </p>
+        <p *ngIf="postDescription.touched && postDescription.errors?.minlength" class="error ">
+            Description must be at least 10 characters!
+        </p>
+
+        <p *ngIf="!!errorMessege" class="error ">
+            Wrong data!
+        </p>
+
+        <button id="btn" [disabled]="isLoading || c.invalid">Post</button>
+
+        <div>
+            <a [routerLink]="['/post/details', post._id]" class=" btn-block col-xs-3 btn btn-success">Back To Post</a>
+        </div>
+
+    </fieldset>
+</form>

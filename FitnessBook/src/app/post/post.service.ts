@@ -26,6 +26,12 @@ export class PostService {
     );
   }
 
+  edit(data): Observable<IPost<IUser>> {
+    return this.http.post<IPost<IUser>>(`${apiUrl}/posts/edit/${data.postId}`, data.formData, { withCredentials: true }).pipe(
+      tap((post: IPost) => this.currentPost = post)
+    );
+  }
+
   details(id: string): Observable<IPost> {
     return this.http.get<IPost>(`${apiUrl}/posts/details/${id}`, { withCredentials: true });
   }

@@ -7,6 +7,8 @@ import { UserRoutingModule } from './user-routing.module';
 import { UserService } from './user.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -14,17 +16,25 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     RegisterComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    EditProfileComponent
   ],
   imports: [
     CommonModule,
     UserRoutingModule,
+    RouterModule,
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
   ],
   providers: [
     UserService
+  ],
+  exports: [
+    RegisterComponent,
+    LoginComponent,
+    ProfileComponent,
+    EditProfileComponent
   ]
 })
 export class UserModule { }
