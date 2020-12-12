@@ -61,7 +61,8 @@
         <p *ngIf="rePassword.touched && rePassword.errors?.minlength" class="error">
             Repeat Password must be at least 4 characters!
         </p>
-        <p *ngIf="!!errorMessege" class="error">Repeat Password does not match password!</p>
+
+        <p *ngIf="!!errorMessege" class="error">{{errorMessege}}</p>
 
         <button [disabled]="isLoading || f.invalid">Register Me</button>
 

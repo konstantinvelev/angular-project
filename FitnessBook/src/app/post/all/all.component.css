@@ -6,6 +6,13 @@ a {
     color: white;
 }
 
+#back {
+    background-image: url('../../../assets/background.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto;
+}
+
 #cheifdiv {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -56,13 +63,14 @@ h1 {
 
 #details {
     margin-left: 300px;
-    margin-right: 300px;
+    margin-right: 50px;
     color: white;
     padding-left: 20px;
     padding-right: 10px;
     background-color: rgb(255, 30, 0);
     padding: 10px 20px;
     font-size: 14px;
+    border-radius: 0.3em;
     text-transform: uppercase;
     font-family: arial, helvetica, verdana, sans-serif;
     font-weight: 900;

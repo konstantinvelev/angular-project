@@ -5,9 +5,10 @@ const { commentController } = require('../controllers');
 
 // middleware that is specific to this router
 
-router.post('/create', commentController.createcomment);
-router.get('/all/:id', commentController.getcomments);
-router.put('/edit/:id', commentController.editcomment);
-router.get('/delete/:id', commentController.deletecomment);
+router.post('/create', auth(), commentController.createcomment);
+router.get('/all/:id', auth(), commentController.getcomments);
+router.put('/edit/:id', auth(), commentController.editcomment);
+router.put('/like/:id', auth(), commentController.like);
+router.get('/delete/:id', auth(), commentController.deletecomment);
 
 module.exports = router

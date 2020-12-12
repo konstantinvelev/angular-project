@@ -13,7 +13,7 @@ const removePassword = (data) => {
 }
 
 function register(req, res, next) {
-    const { email, username, password, repeatPassword } = req.body;
+    const { email, username, password, rePassword } = req.body;
 
     return userModel.create({ email, username, password })
         .then((createdUser) => {
@@ -42,6 +42,7 @@ function register(req, res, next) {
             next(err);
         });
 }
+
 
 function login(req, res, next) {
     const { email, password } = req.body;
@@ -78,7 +79,7 @@ function logout(req, res) {
 
     tokenBlacklistModel.create({ token })
         .then(() => {
-            res.clearCookie(authCookieName, { domain: 'localhost', path: '/' })
+            res.clearCookie(authCookieName)
                 .status(200)
                 .send({ message: 'Logged out!' });
         })

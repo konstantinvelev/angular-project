@@ -34,5 +34,9 @@ export class CommentService {
   deleteComment(data): Observable<any> {
     return this.http.get<any>(`${apiUrl}/comments/delete/${data.commentId}?postId=${data.postId}&userId=${data.userId}`, { withCredentials: true });
   }
+
+  likeComment(data): Observable<any> {
+    return this.http.put<any>(`${apiUrl}/comments/like/${data.commentId}`, data.user, { withCredentials: true });
+  }
 }
 

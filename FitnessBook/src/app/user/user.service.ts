@@ -41,7 +41,7 @@ export class UserService {
   }
 
   logout(): Observable<any> {
-    return this.http.post(`${apiUrl}/users/logout`, { withCredentials: true }).pipe(
+    return this.http.post(`${apiUrl}/users/logout`, {}, { withCredentials: true }).pipe(
       tap(() => this.currentUser = null)
     );
   }

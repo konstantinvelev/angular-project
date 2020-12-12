@@ -54,7 +54,6 @@ function deletecomment(req, res, next) {
     const queryParams = arr[4];
     const firstStep = queryParams.split('?');
     const commentId = firstStep[0];
-
     const secondStep = firstStep[1].split('=');
     const userId = secondStep[2];
     const thirthStep = secondStep[1].split('&');
@@ -77,8 +76,8 @@ function deletecomment(req, res, next) {
 }
 
 function like(req, res, next) {
-    const { commentId } = req.params;
-    const { _id: userId } = req.user;
+    const commentId = req.params.id;
+    const { _id: userId } = req.body;
 
     console.log('like')
 

@@ -1,5 +1,13 @@
-<div class="background text-center">
+<div *ngIf="!isLogged" class="background text-center">
     <h1>Welcome to Fitness Book</h1>
     <h2>Learn how to transform your body!</h2>
     <p>If you want to help someone to learn how to fit his body, make a registration and add your exercise or diet!</p>
+</div>
+
+<div *ngIf="isLogged" class="background text-center">
+    <h1>Welcome to Fitness Book</h1>
+    <h2>We are very grateful for your registration in our site!</h2>
+    <h5>We hope you help to other people to transform their bodys if you can! If you make a registration to someone help to you... You are in the right site! Before every workout make sure what you want from you and that will motivate you! Go to posts and
+        looking for workout witch response to your requirments and make sure you have fun in our site :)!
+    </h5>
 </div>

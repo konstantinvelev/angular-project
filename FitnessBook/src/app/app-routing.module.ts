@@ -26,7 +26,8 @@ const routes: Routes = [
         path: 'about',
         component: AboutComponent,
         data: {
-          title: 'Home page'
+          isLogged: false,
+          title: 'About page',
         }
       },
       {

@@ -45,7 +45,9 @@
 
         <button [disabled]="isLoading || f.invalid">Edit My Profile</button>
 
-        <a [routerLink]="['/user/profile']" class=" btn-block btn btn-primary">Back to Profile</a>
+        <div id="buttonHolder">
+            <a [routerLink]="['/user/profile']" id="backBtn">Back to Profile</a>
+        </div>
 
     </fieldset>
 </form>

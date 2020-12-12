@@ -13,6 +13,9 @@ import { PostService } from '../post.service';
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent implements OnInit {
+  
+  isOnEdit = false;
+  commentToEdit = '';
 
   get isCreator(): boolean {
     return this.post.userId._id === this.userService.currentUser._id;
@@ -21,8 +24,6 @@ export class DetailsComponent implements OnInit {
   get isLiked(): boolean {
     return this.post.likes.includes(this.userService.currentUser._id);
   }
-
-  isOnEdit = false;
 
   get currentUser(): IUser {
     return this.userService.currentUser;
@@ -50,7 +51,7 @@ export class DetailsComponent implements OnInit {
   }
 
   submitFormHandler(content): void {
-    const data = { content: content.comment, postId: this.post._id, userId: this.post.userId._id };
+    const data = { content: content.comment, postId: this.post._id, userId: this.currentUser._id };
     this.isLoading = true;
     this.errorMessage = '';
     this.commentService.postComment(data).subscribe({
@@ -80,8 +81,9 @@ export class DetailsComponent implements OnInit {
     })
   }
 
-  editComment(): void {
+  editComment(id): void {
     this.isOnEdit = true;
+    this.commentToEdit = id;
   }
 
   editedCommentHandler(data): void {
@@ -90,7 +92,7 @@ export class DetailsComponent implements OnInit {
     this.commentService.editComment({ commentId: data.commentId, user: this.userService.currentUser, content: data.newComment }).subscribe({
       next: () => {
         this.isLoading = false;
-        this.isOnEdit= false;
+        this.isOnEdit = false;
         window.location.reload();
       },
       error: (err) => {
@@ -103,10 +105,27 @@ export class DetailsComponent implements OnInit {
   deleteComment(id): void {
     this.isLoading = true;
     this.errorMessage = '';
-    this.commentService.deleteComment({ commentId: id, userId: this.userService.currentUser._id, postId: this.post._id }).subscribe({
+    if (confirm('Are you sure you want delete this comment?')) {
+      this.commentService.deleteComment({ commentId: id, userId: this.userService.currentUser._id, postId: this.post._id }).subscribe({
+        next: () => {
+          this.isLoading = false;
+          this.isOnEdit = false;
+          window.location.reload();
+        },
+        error: (err) => {
+          this.errorMessage = err.message;
+          console.log(err.message);
+        }
+      })
+    }
+  }
+
+  likeCommentHandler(id) {
+    this.isLoading = true;
+    this.errorMessage = '';
+    this.commentService.likeComment({ commentId: id, user: this.userService.currentUser }).subscribe({
       next: () => {
         this.isLoading = false;
-        this.isOnEdit= false;
         window.location.reload();
       },
       error: (err) => {

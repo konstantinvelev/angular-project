@@ -29,8 +29,7 @@ export class RegisterComponent implements OnInit {
       },
       error: (err) => {
         this.isLoading = false;
-        this.errorMessege = err.message;
-        this.router.navigate(['/user/register']);
+        this.errorMessege = err.error.message;
       }
     })
 

@@ -34,37 +34,50 @@
                     </button>
                 </div>
             </div>
-            <form #c="ngForm" (ngSubmit)="submitFormHandler(c.value)">
-                <div class="input-group">
-                    <input #comment="ngModel" class="input-error" placeholder="Comment" type="text" name="comment" id="comment" ngModel required minlength="4">
 
-                    <p class="error" *ngIf="comment.touched && comment.errors?.required">
-                        Comment is required!
-                    </p>
-                    <p class="error" *ngIf="comment.errors?.minlength">
-                        Comment must be at least 4 characters!
-                    </p>
+            <div class="inline-block">
+                <form #c="ngForm" (ngSubmit)="submitFormHandler(c.value)">
+                    <div class="input-group">
+                        <textarea rows="3" cols="100" #comment="ngModel" placeholder="Comment" type="text" name="comment" ngModel required minlength="4"></textarea>
 
+                        <p class="error" *ngIf="comment.touched && comment.errors?.required">
+                            Comment is required!
+                        </p>
+                        <p class="error" *ngIf="comment.errors?.minlength">
+                            Comment must be at least 4 characters!
+                        </p>
 
-                    <button class="btn btn-primary" [disabled]="isLoading || c.invalid">Comment</button>
-                </div>
-            </form>
+                        <button id="com" class="btn btn-primary" [disabled]="isLoading || c.invalid">Comment</button>
+                    </div>
+                </form>
+            </div>
             <div class="post-footer">
-                <div class="comments-list">
+                <div class="comments-list" *ngFor="let comment of post.comments">
                     <div class="comment">
-                        <div class="comment-body" *ngFor="let comment of post.comments">
+                        <div class="comment-body">
                             <div class="comment-heading">
                                 <h4 class="user">{{comment.userId.username}}</h4>
                                 <h5 class="time">{{comment.created_at}}</h5>
 
                                 <p *ngIf="!isOnEdit">{{comment.content}}</p>
+                                <div id="lk">
+                                    <div class="stats row pull-right col-xs-3">
+                                        <button *ngIf="!comment.likes.includes(currentUser._id)" (click)="likeCommentHandler(comment._id)" class=" btn btn-primary stat-item">
+                                        <i class="fa fa-thumbs-up icon"></i> {{comment.likes.length}}
+                                    </button>
 
+                                        <button *ngIf="comment.likes.includes(currentUser._id)" class="btn btn-success stat-item">
+                                        <i class="fa fa-thumbs-up icon"></i> {{comment.likes.length}}
+                                    </button>
+                                    </div>
+                                </div>
                                 <div *ngIf="comment.userId._id === currentUser._id">
-                                    <a (click)="editComment()" class="uglybutton style= float:right; margin: 10%;">Edit Comment</a>
-                                    <div *ngIf="isOnEdit">
+                                    <a (click)="editComment(comment._id)" class="uglybutton style= float:right; margin: 10%;">Edit Comment</a>
+                                    <div *ngIf="isOnEdit && comment._id === commentToEdit">
+
                                         <form id="editForm" #f="ngForm" (ngSubmit)="editedCommentHandler({commentId:comment._id, newComment:f.value})">
                                             <div class="input-group">
-                                                <input #editcomment="ngModel" class="input-error" placeholder="Comment" type="text" name="comment" id="comment" [ngModel]="comment.content" required minlength="4">
+                                                <textarea #editcomment="ngModel" class="input-error" placeholder="Comment" rows="3" cols="100" type="text" name="comment" id="comment" [ngModel]="comment.content" required minlength="4"></textarea>
 
                                                 <p class="error" *ngIf="editcomment.touched && editcomment.errors?.required">
                                                     Comment is required!
@@ -72,7 +85,7 @@
                                                 <p class="error" *ngIf="editcomment.errors?.minlength">
                                                     Comment must be at least 4 characters!
                                                 </p>
-                                                <button class="btn btn-primary" [disabled]="isLoading || f.invalid">Comment</button>
+                                                <button class="btn btn-primary" [disabled]="isLoading || f.invalid">Save</button>
                                             </div>
                                         </form>
                                     </div>
