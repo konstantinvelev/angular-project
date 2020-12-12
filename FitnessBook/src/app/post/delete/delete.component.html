@@ -22,9 +22,9 @@
     </div>
 
     <div class="row pull-center col-xs-3" *ngIf="isCreator">
-        <div class="col-2 text-center">
+        <div class="col-4 text-center">
             <a [routerLink]="['/post/details', post._id]" class="col-xs-3 btn btn-success">Back </a>
-            <button (click)="deletePost(post._id)" class=" col-xs-3 btn btn-danger">Delete Post</button>
+            <a (click)="deletePost(post._id)" class=" col-xs-3 btn btn-danger">Delete Post</a>
         </div>
     </div>
 </div>

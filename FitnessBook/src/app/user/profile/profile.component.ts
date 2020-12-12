@@ -15,12 +15,6 @@ export class ProfileComponent implements OnInit {
   get currentUser(): IUser {
     return this.userService.currentUser;
   }
-  // get aboutYou(): boolean {
-  //   return this.userService.currentUser.userInfo.length > 0 ? true : false;
-  // }
-  get postsForCurrentUser(): any{
-    return this.currentUser.posts.filter(s=> s.userId._id === this.userService.currentUser._id);
-  } 
 
   constructor(private userService: UserService) { }
 

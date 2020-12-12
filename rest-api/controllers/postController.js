@@ -53,7 +53,7 @@ function subscribe(req, res, next) {
 
 function deletepost(req, res, next) {
     const postId = req.params.id;
-    const { _id: userId } = req.user;
+    const { id: userId } = req.user;
 
     Promise.all([
             postModel.findOneAndDelete({ _id: postId }),

@@ -93,7 +93,7 @@ export class DetailsComponent implements OnInit {
       next: () => {
         this.isLoading = false;
         this.isOnEdit = false;
-        window.location.reload();
+      window.location.reload();
       },
       error: (err) => {
         this.errorMessage = err.message;
