@@ -10,8 +10,6 @@ import { DetailsComponent } from './details/details.component';
 import { EditComponent } from './edit/edit.component';
 import { DeleteComponent } from './delete/delete.component';
 
-
-
 @NgModule({
   declarations: [
     CreateComponent,
